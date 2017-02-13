@@ -1,0 +1,112 @@
+a,a:visited{
+    color: #fa2d65;
+}
+
+a:hover,
+a:focus,
+.site-info a:hover{
+    color: #BD204B;
+}
+
+ul.layla-nav > li.menu-item.current-menu-item a,
+ul.layla-nav > li.menu-item.current-menu-parent a,
+ul.layla-nav > li.menu-item a:hover{
+    
+    border-bottom: 2px solid #BD204B;
+
+}
+
+ul.layla-nav > li > ul li.current-menu-item > a{
+    color: #fa2d65;
+}
+
+ul.layla-nav ul li a:hover{
+    color: #BD204B;
+}
+
+.layla-button.primary,
+button, 
+input[type="button"], 
+input[type="submit"],
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt,
+.woocommerce ul.products li.product .button,
+.button.wc-backward{
+    background-color: #fa2d65 !important;
+    color: #fff !important;
+    background: #fa2d65;
+    color: #fff;
+}
+
+button:hover, 
+input[type="button"]:hover, 
+input[type="submit"]:hover,
+.layla-button.primary:hover,
+.button.wc-backward:hover,
+.woocommerce ul.products li.product .button:hover,
+.woocommerce button.button.alt:hover, 
+.woocommerce input.button.alt:hover,
+.woocommerce #respond input#submit.alt:hover, 
+.woocommerce a.button.alt:hover{
+    background: #BD204B !important;
+}
+
+.entry-meta .fa{
+    background: #fa2d65;
+}
+
+.woocommerce .woocommerce-message{
+    border-top-color: #fa2d65;
+}
+
+.woocommerce .woocommerce-message:before{
+    color: #fa2d65;
+}
+
+.main-navigation .layla-cart,
+.layla-mobile-cart .layla-cart{
+    transition: 0.25s all ease-in-out;
+    -moz-transition: 0.25s all ease-in-out;
+    -webkit-transition: 0.25s all ease-in-out;
+    top: -5px;
+}
+
+
+#layla-featured,
+.woocommerce span.onsale{
+    background: #fa2d65;
+    color: #fff;
+}
+#layla-featured .fa{
+    color: #fff;
+}
+
+#layla-social a{
+    color: #fa2d65;
+}
+
+#layla-social a:hover{
+    color: #BD204B;
+}
+
+.scroll-top:hover{
+    background: #BD204B;
+}
+
+#layla-overlay-trigger{
+    border-color: transparent transparent #fa2d65 transparent;
+}
+
+#layla-overlay-trigger{
+    background: #fa2d65;
+}
+
+#layla-overlay-trigger:hover{
+    background: #BD204B;
+}
+
+.layla-blog-post{
+    background-color: #fa2d65;
+}
