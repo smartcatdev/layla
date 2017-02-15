@@ -512,12 +512,18 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 }
 
 #layla-featured-post #slide1 .slide-details{
-/*    position: absolute;
-    bottom: 150px;
-    left: 0;*/
     text-align: center;
-    margin-top: 200px;
 } 
+
+#layla-featured-post #slide1 .slide-vert-wrapper {
+    width: 100%;
+    display: table;
+}
+
+#layla-featured-post #slide1 .slide-vert-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
 
 #layla-featured-post #slide1 p{
     font-size: 22px;

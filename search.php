@@ -25,7 +25,7 @@ get_header();
 
             <?php get_sidebar('left'); ?>
 
-            <div class="layla-blog-content col-sm-<?php echo esc_attr( layla_main_width() ); ?>">
+            <div class="layla-blog-content col-sm-<?php echo intval( layla_main_width() ); ?>">
                 <?php if (have_posts()) : ?>
 
                     <?php /* Start the Loop */ ?>

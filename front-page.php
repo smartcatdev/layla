@@ -50,8 +50,11 @@ $front = get_option('show_on_front');
 
                     <?php endwhile; ?>
                     <?php echo $front == 'posts' ? '</div>' : ''; ?>
+                
+                    <div class="clear"></div>
+                    
                     <div class="layla-pagination">
-                        <?php echo paginate_links(); ?>
+                        <?php the_posts_pagination(); ?>
                     </div>
 
                 <?php else : ?>

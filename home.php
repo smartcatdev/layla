@@ -48,8 +48,10 @@ endif;
                         
                     </div>
                 
+                    <div class="clear"></div>
+                
                     <div class="layla-pagination">
-                        <?php echo paginate_links(); ?>
+                        <?php the_posts_pagination(); ?>
                     </div>
 
                 <?php else : ?>
