@@ -9,7 +9,7 @@ Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright 2016 Smartcat
+Copyright 2017 Smartcat
 
 == Description ==
 

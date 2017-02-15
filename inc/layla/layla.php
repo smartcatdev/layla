@@ -18,9 +18,9 @@ function layla_scripts() {
 
     wp_enqueue_style('layla-style', get_stylesheet_uri());
 
-    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
+    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), LAYLA_VERSION, true);
 
-    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), LAYLA_VERSION, true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -28,27 +28,26 @@ function layla_scripts() {
     
     $fonts = layla_fonts();
     
-    if( array_key_exists ( get_theme_mod('header_font', 'Montserrat, sans-serif'), $fonts ) ) :
-        wp_enqueue_style('layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('header_font', 'Montserrat, sans-serif')], array(), LAYLA_VERSION );
+    if( array_key_exists ( get_theme_mod( 'header_font', 'Montserrat, sans-serif' ), $fonts ) ) :
+        wp_enqueue_style( 'layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[ get_theme_mod( 'header_font', 'Montserrat, sans-serif' ) ], array(), LAYLA_VERSION );
     endif;
     
-    if( array_key_exists ( get_theme_mod('theme_font', 'Lato, sans-serif'), $fonts ) ) :
-        wp_enqueue_style('layla-font-general', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('theme_font', 'Lato, sans-serif')], array(), LAYLA_VERSION );
+    if( array_key_exists ( get_theme_mod( 'theme_font', 'Lato, sans-serif' ), $fonts ) ) :
+        wp_enqueue_style( 'layla-font-general', '//fonts.googleapis.com/css?family=' . $fonts[ get_theme_mod( 'theme_font', 'Lato, sans-serif' ) ], array(), LAYLA_VERSION );
     endif;
-    
 
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.css', array(), LAYLA_VERSION);
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri() . '/inc/css/bootstrap-theme.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/inc/css/font-awesome.css', array(), LAYLA_VERSION);
     wp_enqueue_style('layla-main-style', get_template_directory_uri() . '/inc/css/style.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-animations', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-template', get_template_directory_uri() . '/inc/css/temps/' . esc_attr(get_theme_mod('theme_color', 'pink')) . '.css', array(), LAYLA_VERSION);
-    wp_enqueue_script('layla-easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
+    wp_enqueue_style('animate', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('layla-template', get_template_directory_uri() . '/inc/css/temps/' . esc_attr( get_theme_mod( 'theme_color', 'pink' ) ) . '.css', array(), LAYLA_VERSION);
+    wp_enqueue_script('easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('slicknav', get_template_directory_uri() . '/inc/js/slicknav.min.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('wow', get_template_directory_uri() . '/inc/js/wow.js', array('jquery'), LAYLA_VERSION, true);
-
     wp_enqueue_script('layla-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core', 'jquery-masonry'), LAYLA_VERSION);
+    
 }
 
 add_action('wp_enqueue_scripts', 'layla_scripts');
@@ -259,7 +258,7 @@ function layla_custom_css() {
         }
         
         #layla-featured-post #slide1{
-            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 400 ) ); ?>px;
+            height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 400 ) ); ?>px;
         }
         
         #masthead.site-header,
@@ -374,10 +373,10 @@ function layla_custom_css() {
             border-bottom: 7px solid <?php echo $theme_color; ?>;
         }
         <?php if( get_theme_mod( 'layla_the_featured_post_highlight', false ) ) : ?>
-        #layla-featured-post #slide1 span.header-inner {
-            padding: 15px;
-            background: rgba( <?php echo $theme_color_rgba[0]; ?>,<?php echo $theme_color_rgba[1]; ?>,<?php echo $theme_color_rgba[2]; ?>, 0.8 ); 
-        }
+            #layla-featured-post #slide1 span.header-inner {
+                padding: 15px;
+                background: rgba( <?php echo intval( $theme_color_rgba[0] ); ?>,<?php echo intval( $theme_color_rgba[1] ); ?>,<?php echo intval( $theme_color_rgba[2] ); ?>, 0.8 ); 
+            }
         <?php endif; ?>
         
         
@@ -649,7 +648,7 @@ function layla_render_footer(){ ?>
         <div class="row">
             
             <div class="layla-copyright">
-                <?php echo ( get_theme_mod( 'copyright_text' ) ); ?>
+                <?php echo get_theme_mod( 'copyright_text', get_bloginfo( 'name' ) . ' ' . date_i18n( __( 'Y', 'layla' ) ) ); ?>
             </div>
             <?php 
             if( get_theme_mod( 'layla_social_footer', 'on' ) == 'on' ) :
@@ -687,8 +686,8 @@ function layla_render_footer(){ ?>
             <hr>
 
             <a href="https://smartcatdesign.net" rel="designer" style="display: block !important" class="rel">
-                <?php _e( 'Design by' , 'layla' ); echo ' Smart' . 'cat'; ?>
-                <img src="<?php echo get_template_directory_uri() . '/inc/images/cat_logo_mini.png'?>"/>
+                <?php printf( esc_html__( 'Design by %s', 'layla' ), 'Smart' . 'cat' ); ?>
+                <img src="<?php echo trailingslashit( get_template_directory_uri() ) . 'inc/images/cat_logo_mini.png'; ?>" alt="<?php printf( esc_attr__( '%s Logo', 'layla' ), 'Smart' . 'cat' ); ?>" />
             </a>
             
             
