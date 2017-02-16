@@ -6,19 +6,17 @@
  * @package Layla
  */
 get_header();
-die('this is index.php');
 ?>
 
 <div id="primary" class="content-area">
 
     <main id="main" class="site-main layla-blog-page" role="main">
 
-
         <div class="row">
 
             <?php get_sidebar('left'); ?>
 
-            <div class="layla-blog-content col-sm-<?php echo esc_attr( layla_main_width() ); ?>">
+            <div class="layla-blog-content col-sm-<?php echo intval( layla_main_width() ); ?>">
                 <?php if (have_posts()) : ?>
 
 
@@ -44,7 +42,7 @@ die('this is index.php');
         </div>
         <div class="clear"></div>
         <div class="layla-pagination">
-            <?php echo paginate_links(); ?>
+            <?php the_posts_pagination(); ?>
         </div>
     </main><!-- #main -->
 </div><!-- #primary -->

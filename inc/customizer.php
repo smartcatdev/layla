@@ -104,7 +104,7 @@ function layla_customize_register( $wp_customize ) {
     ));
     
     $wp_customize->add_setting( 'facebook_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -117,7 +117,7 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'gplus_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -130,7 +130,7 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'instagram_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -388,7 +388,7 @@ function layla_customize_register( $wp_customize ) {
             $wp_customize->add_setting( 'layla_the_featured_post_button', array (
                 'default'               => __( 'Read More', 'layla' ),
                 'transport'             => 'refresh',
-                'sanitize_callback'     => 'layla_sanitize_text',
+                'sanitize_callback'     => 'sanitize_text_field',
             ) );
             $wp_customize->add_control( 'layla_the_featured_post_button', array(
                 'type'                  => 'text',
@@ -543,12 +543,12 @@ function layla_customize_register( $wp_customize ) {
             $wp_customize->add_setting( 'homepage_topc_button', array (
                 'default'               => __( 'Learn more', 'layla' ),
                 'transport'             => 'refresh',
-                'sanitize_callback'     => 'layla_sanitize_text',
+                'sanitize_callback'     => 'sanitize_text_field',
             ) );
             $wp_customize->add_control( 'homepage_topc_button', array(
                 'type'                  => 'text',
                 'section'               => 'homepage_topc',
-                'label'                 => __( 'Link #1 text', 'layla' ),
+                'label'                 => __( 'Link Text', 'layla' ),
             ) );
 
 
@@ -810,9 +810,9 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
         $wp_customize->add_setting( 'copyright_text', array (
-            'default'               => __( 'Copyright Company Name', 'layla' ) . date( 'Y' ),
+            'default'               => get_bloginfo( 'name' ) . ' ' . date_i18n( __( 'Y', 'layla') ),
             'transport'             => 'refresh',
-            'sanitize_callback'     => 'layla_sanitize_text'
+            'sanitize_callback'     => 'sanitize_text_field'
         ) );
 
         $wp_customize->add_control( 'copyright_text', array(
@@ -926,19 +926,6 @@ function layla_font_sizes(){
    }
  }
    
-   function layla_sanitize_sidebar_location($input) {
-    $valid_keys = array(
-      'left'=>__('Left', 'layla'),
-      'right'=>__('Right', 'layla'),
-      'none'=>__('None', 'layla')
-      );
-    if ( array_key_exists( $input, $valid_keys ) ) {
-     return $input;
-   } else {
-     return '';
-   }
- }
-   
    function layla_radio_sanitize_onoff($input) {
     $valid_keys = array(
       'on'=>__('On', 'layla'),
@@ -960,11 +947,6 @@ function layla_checkbox_sanitize($input) {
    }
 }
 
-//integer sanitize
-function layla_integer_sanitize($input){
-     return intval( $input );
-}
-   
 function layla_fonts() {
 
     $font_family_array = array(
@@ -1023,9 +1005,6 @@ function layla_all_posts_array() {
     return $posts_array;
 
 }
-function layla_sanitize_integer( $input ) {
-    return intval( $input );
-}
 
 function layla_sanitize_icon( $input ) {
     $valid_keys = layla_icons();
@@ -1045,17 +1024,8 @@ function layla_sanitize_post( $input ) {
    }
 }
 
-function layla_sanitize_text($input){
-    return sanitize_text_field( $input );
-}
-
-function layla_sanitize_theme_color( $input ){
-    $valid_keys = layla_theme_colors();
-    if ( array_key_exists( $input, $valid_keys ) ) {
-     return $input;
-   } else {
-     return '';
-   }    
+function layla_sanitize_integer( $input ) {
+    return intval( $input );
 }
 
 function layla_sanitize_font( $input ){
@@ -1082,15 +1052,4 @@ function layla_sanitize_checkbox( $input ) {
     } else {
         return '';
     }
-}
-
-function layla_theme_colors(){
-    return array(
-            'green'             => __( 'Green', 'layla' ),
-            'blue'              => __( 'Blue', 'layla' ),
-            'red'               => __( 'Red', 'layla' ),
-            'pink'              => __( 'Pink', 'layla' ),
-            'yellow'            => __( 'Yellow', 'layla' ),
-            'darkblue'          => __( 'Dark Blue', 'layla' ),
-        );
 }

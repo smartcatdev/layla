@@ -31,7 +31,7 @@
     
     <?php get_sidebar('left'); ?>
     
-    <div class="col-sm-<?php echo esc_attr( layla_main_width() ); ?>">
+    <div class="col-sm-<?php echo intval( layla_main_width() ); ?>">
 
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <header class="entry-header">
@@ -62,7 +62,7 @@
             </div><!-- .entry-content -->
 
             <?php the_post_navigation(); ?>
-
+            
             <?php
             // If comments are open or we have at least one comment, load up the comment template.
             if (comments_open() || get_comments_number()) :

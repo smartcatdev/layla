@@ -18,9 +18,9 @@ function layla_scripts() {
 
     wp_enqueue_style('layla-style', get_stylesheet_uri());
 
-    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
+    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), LAYLA_VERSION, true);
 
-    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), LAYLA_VERSION, true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -28,27 +28,25 @@ function layla_scripts() {
     
     $fonts = layla_fonts();
     
-    if( array_key_exists ( get_theme_mod('header_font', 'Montserrat, sans-serif'), $fonts ) ) :
-        wp_enqueue_style('layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('header_font', 'Montserrat, sans-serif')], array(), LAYLA_VERSION );
+    if( array_key_exists ( get_theme_mod( 'header_font', 'Montserrat, sans-serif' ), $fonts ) ) :
+        wp_enqueue_style( 'layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[ get_theme_mod( 'header_font', 'Montserrat, sans-serif' ) ], array(), LAYLA_VERSION );
     endif;
     
-    if( array_key_exists ( get_theme_mod('theme_font', 'Lato, sans-serif'), $fonts ) ) :
-        wp_enqueue_style('layla-font-general', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('theme_font', 'Lato, sans-serif')], array(), LAYLA_VERSION );
+    if( array_key_exists ( get_theme_mod( 'theme_font', 'Lato, sans-serif' ), $fonts ) ) :
+        wp_enqueue_style( 'layla-font-general', '//fonts.googleapis.com/css?family=' . $fonts[ get_theme_mod( 'theme_font', 'Lato, sans-serif' ) ], array(), LAYLA_VERSION );
     endif;
-    
 
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri() . '/inc/css/bootstrap-theme.min.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/inc/css/font-awesome.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('layla-main-style', get_template_directory_uri() . '/inc/css/style.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-animations', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-template', get_template_directory_uri() . '/inc/css/temps/' . esc_attr(get_theme_mod('theme_color', 'pink')) . '.css', array(), LAYLA_VERSION);
-    wp_enqueue_script('layla-easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
+    wp_enqueue_style('animate', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
+    wp_enqueue_script('easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('slicknav', get_template_directory_uri() . '/inc/js/slicknav.min.js', array('jquery'), LAYLA_VERSION, true);
-    wp_enqueue_script('wow', get_template_directory_uri() . '/inc/js/wow.js', array('jquery'), LAYLA_VERSION, true);
-
+    wp_enqueue_script('wow', get_template_directory_uri() . '/inc/js/wow.min.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('layla-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core', 'jquery-masonry'), LAYLA_VERSION);
+    
 }
 
 add_action('wp_enqueue_scripts', 'layla_scripts');
@@ -119,75 +117,12 @@ function layla_widgets_init() {
 
 add_action('widgets_init', 'layla_widgets_init');
 
-
-
-function layla_do_left_sidebar( $args ) {
-    
-    if( get_theme_mod( 'sidebar_location', 'right' ) == 'none' ) :
-        return;
-    endif;
-    
-    if( $args[0] == 'frontpage' && get_theme_mod('home_sidebar') == 'off' )
-        return;
-    
-    if( $args[0] == 'page' && get_theme_mod('page_sidebar') == 'off' )
-        return;
-    
-    if( $args[0] == 'single' && get_theme_mod('single_sidebar') == 'off' )
-        return;
-    
-    
-    
-    if( get_theme_mod( 'sidebar_location', 'right' ) == 'left' ) :
-        
-        echo '<div class="col-sm-4" id="layla-sidebar">' .
-        get_sidebar() . '</div>';
-        
-    endif;
-    
-    
-}
-add_action('layla-sidebar-left', 'layla_do_left_sidebar');
-
-function layla_do_right_sidebar( $args ) {
-    
-    if( get_theme_mod( 'sidebar_location', 'right' ) == 'none' ) :
-        return;
-    endif;
-    
-    if( $args[0] == 'frontpage' && get_theme_mod('home_sidebar') == 'off' )
-        return;
-    
-    if( $args[0] == 'page' && get_theme_mod('page_sidebar') == 'off' )
-        return;
-    
-    if( $args[0] == 'single' && get_theme_mod('single_sidebar') == 'off' )
-        return;
-    
-    
-    
-    if( get_theme_mod( 'sidebar_location', 'right' ) == 'right' ) :
-        
-        echo '<div class="col-sm-4" id="layla-sidebar">';
-    
-        get_sidebar();
-        
-        echo '</div>';
-        
-    endif;
-    
-    
-}
-add_action('layla-sidebar-right', 'layla_do_right_sidebar');
-
 function layla_main_width(){
     
     $width = 12;
     
     if( is_active_sidebar('sidebar-left') && is_active_sidebar('sidebar-right') ) :
-        
         $width = 6;
-        
     elseif( is_active_sidebar('sidebar-left') || is_active_sidebar('sidebar-right') ) :
         $width = 9;
     else:
@@ -254,12 +189,9 @@ function layla_custom_css() {
             font-size: <?php echo esc_attr( get_theme_mod('menu_font_size', '14px' ) ); ?>;
         }
         
-        #layla-overlay-trigger{
-            background: <?php echo esc_attr( get_theme_mod('homepage_widget_color' ) ); ?>;
-        }
-        
-        #layla-featured-post #slide1{
-            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 400 ) ); ?>px;
+        #layla-featured-post #slide1,
+        #layla-featured-post #slide1 .slide-vert-wrapper {
+            height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 400 ) ); ?>px;
         }
         
         #masthead.site-header,
@@ -365,8 +297,7 @@ function layla_custom_css() {
             color: #fff;
         }
 
-        .scroll-top:hover,
-        #layla-overlay-trigger:hover{
+        .scroll-top:hover {
             background: <?php echo $hover_color; ?>;
         }
         
@@ -374,23 +305,11 @@ function layla_custom_css() {
             border-bottom: 7px solid <?php echo $theme_color; ?>;
         }
         <?php if( get_theme_mod( 'layla_the_featured_post_highlight', false ) ) : ?>
-        #layla-featured-post #slide1 span.header-inner {
-            padding: 15px;
-            background: rgba( <?php echo $theme_color_rgba[0]; ?>,<?php echo $theme_color_rgba[1]; ?>,<?php echo $theme_color_rgba[2]; ?>, 0.8 ); 
-        }
+            #layla-featured-post #slide1 span.header-inner {
+                padding: 15px;
+                background: rgba( <?php echo intval( $theme_color_rgba[0] ); ?>,<?php echo intval( $theme_color_rgba[1] ); ?>,<?php echo intval( $theme_color_rgba[2] ); ?>, 0.8 ); 
+            }
         <?php endif; ?>
-        
-        
-
-        
-        #pre-header{
-            background-color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_bg_color', '#ffffff' ) ); ?>;
-            color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_text_color', '#101010' ) ); ?>;
-        }
-        
-        #pre-header a{
-            color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_text_color', '#101010' ) ); ?>;
-        }
         
     </style>
     <?php
@@ -405,7 +324,7 @@ function layla_featured_post() { ?>
     <div id="layla-featured-post">
         
         <?php
-        if( get_theme_mod( 'layla_social_featured', 'off' ) == 'on' ) :
+        if( get_theme_mod( 'layla_social_featured', 'on' ) == 'on' ) :
             layla_social_icons(); 
         endif;
         ?>
@@ -421,22 +340,29 @@ function layla_featured_post() { ?>
                 <div class="row">
                     <div class="col-sm-12 slide-details">
 
-                        <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>">
-                            <h2 class="header-text slide1-header animated fadeIn delay1">
-                                <span class="header-inner"><?php echo ( get_the_title( $post_id ) ? esc_attr( get_the_title( $post_id ) ) : '' ); ?></span>
-                            </h2>
+                        <div class="slide-vert-wrapper">
+                         
+                            <div class="slide-vert-inner">
                             
-                            <p class="animated fadeIn delay1">
-                                <?php echo esc_html( wp_trim_words( strip_tags( get_the_content( $post_id ) ), 25 ) ); ?>
-                            </p>
-                        </a>
+                                <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>">
+                                    <h2 class="header-text slide1-header animated fadeIn delay1">
+                                        <span class="header-inner"><?php echo ( get_the_title( $post_id ) ? esc_attr( get_the_title( $post_id ) ) : '' ); ?></span>
+                                    </h2>
 
-                        <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>" 
-                           class="animated fadeIn delay1 layla-button primary">
-                            <?php echo esc_attr( get_theme_mod( 'layla_the_featured_post_button', __( 'Continue reading', 'layla' )  ) ); ?>
-                        </a>
+                                    <p class="animated fadeIn delay1">
+                                        <?php echo esc_html( wp_trim_words( strip_tags( get_the_content( $post_id ) ), 25 ) ); ?>
+                                    </p>
+                                </a>
 
+                                <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>" 
+                                   class="animated fadeIn delay1 layla-button primary">
+                                    <?php echo esc_attr( get_theme_mod( 'layla_the_featured_post_button', __( 'Continue reading', 'layla' )  ) ); ?>
+                                </a>
 
+                            </div>
+                            
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -649,7 +575,7 @@ function layla_render_footer(){ ?>
         <div class="row">
             
             <div class="layla-copyright">
-                <?php echo ( get_theme_mod( 'copyright_text' ) ); ?>
+                <?php echo get_theme_mod( 'copyright_text', get_bloginfo( 'name' ) . ' ' . date_i18n( __( 'Y', 'layla' ) ) ); ?>
             </div>
             <?php 
             if( get_theme_mod( 'layla_social_footer', 'on' ) == 'on' ) :
@@ -687,8 +613,8 @@ function layla_render_footer(){ ?>
             <hr>
 
             <a href="https://smartcatdesign.net" rel="designer" style="display: block !important" class="rel">
-                <?php _e( 'Design by' , 'layla' ); echo ' Smart' . 'cat'; ?>
-                <img src="<?php echo get_template_directory_uri() . '/inc/images/cat_logo_mini.png'?>"/>
+                <?php printf( esc_html__( 'Design by %s', 'layla' ), 'Smart' . 'cat' ); ?>
+                <img src="<?php echo trailingslashit( get_template_directory_uri() ) . 'inc/images/cat_logo_mini.png'; ?>" alt="<?php printf( esc_attr__( '%s Logo', 'layla' ), 'Smart' . 'cat' ); ?>" />
             </a>
             
             
@@ -727,71 +653,68 @@ function layla_social_icons() { ?>
 
     <div id="layla-social">
 
-        <?php if( get_theme_mod( 'facebook_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'facebook_url' ) ); ?>" target="_BLANK" class="layla-facebook">
+        <?php if( get_theme_mod( 'facebook_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'facebook_url', '' ) ); ?>" target="_BLANK" class="layla-facebook">
             <span class="fa fa-facebook"></span>
         </a>
         <?php endif; ?>
 
-
-        <?php if( get_theme_mod( 'gplus_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'gplus_url' ) ); ?>" target="_BLANK" class="layla-gplus">
+        <?php if( get_theme_mod( 'gplus_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'gplus_url', '' ) ); ?>" target="_BLANK" class="layla-gplus">
             <span class="fa fa-google-plus"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'instagram_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'instagram_url' ) ); ?>" target="_BLANK" class="layla-instagram">
+        <?php if( get_theme_mod( 'instagram_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'instagram_url', '' ) ); ?>" target="_BLANK" class="layla-instagram">
             <span class="fa fa-instagram"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'linkedin_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'linkedin_url' ) ); ?>" target="_BLANK" class="layla-linkedin">
+        <?php if( get_theme_mod( 'linkedin_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'linkedin_url', '' ) ); ?>" target="_BLANK" class="layla-linkedin">
             <span class="fa fa-linkedin"></span>
         </a>
         <?php endif; ?>
 
-
-        <?php if( get_theme_mod( 'pinterest_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'pinterest_url' ) ); ?>" target="_BLANK" class="layla-pinterest">
+        <?php if( get_theme_mod( 'pinterest_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'pinterest_url', '' ) ); ?>" target="_BLANK" class="layla-pinterest">
             <span class="fa fa-pinterest"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'twitter_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'twitter_url' ) ); ?>" target="_BLANK" class="layla-twitter">
+        <?php if( get_theme_mod( 'twitter_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'twitter_url', '' ) ); ?>" target="_BLANK" class="layla-twitter">
             <span class="fa fa-twitter"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'vimeo_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'vimeo_url' ) ); ?>" target="_BLANK" class="layla-vimeo">
+        <?php if( get_theme_mod( 'vimeo_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'vimeo_url', '' ) ); ?>" target="_BLANK" class="layla-vimeo">
             <span class="fa fa-vimeo"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'spotify_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'spotify_url' ) ); ?>" target="_BLANK" class="layla-spotify">
+        <?php if( get_theme_mod( 'spotify_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'spotify_url', '' ) ); ?>" target="_BLANK" class="layla-spotify">
             <span class="fa fa-spotify"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'apple_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'apple_url' ) ); ?>" target="_BLANK" class="layla-apple">
+        <?php if( get_theme_mod( 'apple_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'apple_url', '' ) ); ?>" target="_BLANK" class="layla-apple">
             <span class="fa fa-apple"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'github_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'github_url' ) ); ?>" target="_BLANK" class="layla-github">
+        <?php if( get_theme_mod( 'github_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'github_url', '' ) ); ?>" target="_BLANK" class="layla-github">
             <span class="fa fa-github"></span>
         </a>
         <?php endif; ?>
 
-
-        <?php if( get_theme_mod( 'vine_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'vine_url' ) ); ?>" target="_BLANK" class="layla-vine">
+        <?php if( get_theme_mod( 'vine_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'vine_url', '' ) ); ?>" target="_BLANK" class="layla-vine">
             <span class="fa fa-vine"></span>
         </a>
         <?php endif; ?>

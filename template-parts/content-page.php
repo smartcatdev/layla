@@ -32,7 +32,7 @@
     
     <?php get_sidebar('left'); ?>
     
-    <div class="col-sm-<?php echo esc_attr( layla_main_width() ); ?>">
+    <div class="col-sm-<?php echo intval( layla_main_width() ); ?>">
 
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -58,6 +58,8 @@
                 ?>
             </div><!-- .entry-content -->
 
+            <?php the_post_navigation(); ?>
+            
             <footer class="entry-footer">
                 <?php
                 edit_post_link(

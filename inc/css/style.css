@@ -512,12 +512,18 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 }
 
 #layla-featured-post #slide1 .slide-details{
-/*    position: absolute;
-    bottom: 150px;
-    left: 0;*/
     text-align: center;
-    margin-top: 200px;
 } 
+
+#layla-featured-post #slide1 .slide-vert-wrapper {
+    width: 100%;
+    display: table;
+}
+
+#layla-featured-post #slide1 .slide-vert-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
 
 #layla-featured-post #slide1 p{
     font-size: 22px;
@@ -1154,6 +1160,20 @@ input[type="submit"],
 .post-navigation .nav-previous{
     display: none;
 }
+
+.layla-pagination nav.posts-navigation {
+    overflow: initial;
+}
+
+.layla-pagination nav.posts-navigation .nav-next,
+.layla-pagination nav.posts-navigation .nav-previous {
+    padding: 20px 0;
+}
+
+.layla-pagination nav.posts-navigation .nav-previous {
+    text-align: left;
+}
+
 /* ------- calendar widget --------------*/
 .widget_calendar {float: left;}
 #wp-calendar {width: 100%; }
