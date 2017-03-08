@@ -371,7 +371,7 @@ function layla_customize_register( $wp_customize ) {
             ) );
     
             $wp_customize->add_setting( 'layla_jumbotron_height', array (
-                'default'               => 400,
+                'default'               => 650,
                 'transport'             => 'refresh',
                 'sanitize_callback'     => 'layla_sanitize_integer',
             ) );
@@ -406,6 +406,37 @@ function layla_customize_register( $wp_customize ) {
                 'section'               => 'homepage_jumbotron',
                 'label'                 => __( 'Add background color to post title ?', 'layla' ),
             ) );
+            
+            $wp_customize->add_setting( 'layla_the_featured_post_image_toggle', array (
+                'default'               => 'off',
+                'transport'             => 'refresh',
+                'sanitize_callback'     => 'layla_radio_sanitize_onoff'
+            ) );
+
+           $wp_customize->add_control( 'layla_the_featured_post_image_toggle', array(
+                'label'         => __( 'Use custom image ?', 'layla' ),
+                'description'   => __( 'If set to NO, the Jumbotron will use the Featured Image of your page/post that you selected above. YES will allow you to upload any image below', 'layla' ),
+                'section' => 'homepage_jumbotron',
+                'type'    => 'radio',
+                'choices'    => array(
+                    'on'    => __( 'Yes', 'layla' ),
+                    'off'    => __( 'No', 'layla' )
+                )
+            ));
+
+            $wp_customize->add_setting( 'layla_the_featured_post_image', array (
+                'default'               => get_template_directory_uri() . '/inc/images/layla.jpg',
+                'transport'             => 'refresh',
+                'sanitize_callback'     => 'esc_url_raw'
+            ) );
+
+            $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'layla_the_featured_post_image', array (
+                'label' =>              __( 'Custom Background Image', 'layla' ),
+                'section'               => 'homepage_jumbotron',
+                'mime_type'             => 'image',
+                'settings'              => 'layla_the_featured_post_image',
+                'description'           => __( 'If you want to use a custom image, upload an image here. Make sure that the Use Custom Image toggle is set to YES', 'layla' ),        
+            ) ) );
             
 
     $wp_customize->add_section( 'homepage_topa', array (
@@ -467,7 +498,7 @@ function layla_customize_register( $wp_customize ) {
         ));
     
         $wp_customize->add_setting( 'homepage_widget_background', array (
-            'default'               => get_template_directory_uri() . '/inc/images/widget.jpg',
+            'default'               => get_template_directory_uri() . '/inc/images/people.jpg',
             'transport'             => 'refresh',
             'sanitize_callback'     => 'esc_url_raw'
         ) );
@@ -647,7 +678,7 @@ function layla_customize_register( $wp_customize ) {
     );
     
     $wp_customize->add_setting( 'header_font', array (
-        'default'               => 'Montserrat, sans-serif',
+        'default'               => 'Oswald, sans-serif',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'layla_sanitize_font'
     ) );
@@ -737,7 +768,7 @@ function layla_customize_register( $wp_customize ) {
         
         
             $wp_customize->add_setting( 'footer_background_image', array (
-                'default'               => get_template_directory_uri() . '/inc/images/footer.jpg',
+                'default'               => get_template_directory_uri() . '/inc/images/cab.jpg',
                 'transport'             => 'refresh',
                 'sanitize_callback'     => 'esc_url_raw'
             ) );
@@ -810,7 +841,7 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
         $wp_customize->add_setting( 'copyright_text', array (
-            'default'               => __( 'Copyright Company Name', 'layla' ) . date( 'Y' ),
+            'default'               => get_bloginfo( 'title' ) . ' ' . date( 'Y' ),
             'transport'             => 'refresh',
             'sanitize_callback'     => 'layla_sanitize_text'
         ) );

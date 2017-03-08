@@ -18,9 +18,9 @@ function layla_scripts() {
 
     wp_enqueue_style('layla-style', get_stylesheet_uri());
 
-    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
+    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), LAYLA_VERSION, true);
 
-    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), LAYLA_VERSION, true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -28,8 +28,8 @@ function layla_scripts() {
     
     $fonts = layla_fonts();
     
-    if( array_key_exists ( get_theme_mod('header_font', 'Montserrat, sans-serif'), $fonts ) ) :
-        wp_enqueue_style('layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('header_font', 'Montserrat, sans-serif')], array(), LAYLA_VERSION );
+    if( array_key_exists ( get_theme_mod('header_font', 'Oswald, sans-serif'), $fonts ) ) :
+        wp_enqueue_style('layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('header_font', 'Oswald, sans-serif')], array(), LAYLA_VERSION );
     endif;
     
     if( array_key_exists ( get_theme_mod('theme_font', 'Lato, sans-serif'), $fonts ) ) :
@@ -41,10 +41,9 @@ function layla_scripts() {
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri() . '/inc/css/bootstrap-theme.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/inc/css/font-awesome.css', array(), LAYLA_VERSION);
     wp_enqueue_style('layla-main-style', get_template_directory_uri() . '/inc/css/style.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-animations', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('layla-template', get_template_directory_uri() . '/inc/css/temps/' . esc_attr(get_theme_mod('theme_color', 'pink')) . '.css', array(), LAYLA_VERSION);
-    wp_enqueue_script('layla-easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
+    wp_enqueue_style('animate-css', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
+    wp_enqueue_script('jquery-easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('slicknav', get_template_directory_uri() . '/inc/js/slicknav.min.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('wow', get_template_directory_uri() . '/inc/js/wow.js', array('jquery'), LAYLA_VERSION, true);
 
@@ -199,15 +198,6 @@ function layla_main_width(){
 }
 
 
-function layla_get_image() {
-
-    echo wp_get_attachment_url($POST['id']);
-
-    exit();
-}
-
-add_action('wp_ajax_layla_get_image', 'layla_get_image');
-
 function layla_customize_nav( $items, $args ) {
 
     if( $args->theme_location != 'primary' ) :
@@ -243,23 +233,19 @@ function layla_custom_css() {
 
         body{
             font-size: <?php echo esc_attr( get_theme_mod( 'theme_font_size', '16px') ); ?>;
-            font-family: <?php echo esc_attr( get_theme_mod( 'theme_font', 'Raleway, sans-serif' ) ); ?>;
+            font-family: <?php echo esc_attr( get_theme_mod( 'theme_font', 'Lato, sans-serif' ) ); ?>;
 
         }
         h1,h2,h3,h4,h5,h6,.slide2-header,.slide1-header,.layla-title, .widget-title,.entry-title, .product_title{
-            font-family: <?php echo esc_attr( get_theme_mod('header_font', 'Raleway, sans-serif' ) ); ?>;
+            font-family: <?php echo esc_attr( get_theme_mod('header_font', 'Oswald, sans-serif' ) ); ?>;
         }
         
         ul.layla-nav > li.menu-item a{
             font-size: <?php echo esc_attr( get_theme_mod('menu_font_size', '14px' ) ); ?>;
         }
         
-        #layla-overlay-trigger{
-            background: <?php echo esc_attr( get_theme_mod('homepage_widget_color' ) ); ?>;
-        }
-        
         #layla-featured-post #slide1{
-            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 400 ) ); ?>px;
+            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
         }
         
         #masthead.site-header,
@@ -414,8 +400,12 @@ function layla_featured_post() { ?>
             <?php $post_id = get_theme_mod( 'layla_the_featured_post', 1 ); ?>
             
             <?php if( $post_id ) : ?>
-            
-            <div id="slide1" style="<?php echo has_post_thumbnail( $post_id) ? 'background-image: url(' . esc_url(layla_get_post_thumb( $post_id ) ) . ')' : ''; ?>">
+
+                <?php if( get_theme_mod( 'layla_the_featured_post_image_toggle', 'on' ) == 'on' ) : ?>
+                    <div id="slide1" style="background-image: url( '<?php echo get_theme_mod( 'layla_the_featured_post_image', get_template_directory_uri() . '/inc/images/layla.jpg' ) ?>');">
+                <?php else : ?>
+                    <div id="slide1" style="<?php echo has_post_thumbnail( $post_id) ? 'background-image: url(' . esc_url(layla_get_post_thumb( $post_id ) ) . ')' : ''; ?>">
+                <?php endif; ?>
 
                 <div class="overlay"></div>
                 <div class="row">
@@ -427,7 +417,7 @@ function layla_featured_post() { ?>
                             </h2>
                             
                             <p class="animated fadeIn delay1">
-                                <?php echo esc_html( wp_trim_words( strip_tags( get_the_content( $post_id ) ), 25 ) ); ?>
+                                <?php echo esc_html( wp_trim_words( wp_strip_all_tags ( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
                             </p>
                         </a>
 
@@ -630,7 +620,7 @@ function layla_render_footer(){ ?>
     
     <?php if( get_theme_mod( 'footer_background_toggle', 'on' ) == 'on') : ?>
     
-    <div class="layla-footer" class="parallax-window" data-parallax="scroll" style="background-image: url(<?php echo esc_attr( get_theme_mod('footer_background_image', get_template_directory_uri() . '/inc/images/footer.jpg' ) ); ?>)">
+    <div class="layla-footer" class="parallax-window" data-parallax="scroll" style="background-image: url(<?php echo esc_attr( get_theme_mod('footer_background_image', get_template_directory_uri() . '/inc/images/cab.jpg' ) ); ?>)">
         <div>
             <div class="row">
                 <?php get_sidebar('footer'); ?>
@@ -649,20 +639,13 @@ function layla_render_footer(){ ?>
         <div class="row">
             
             <div class="layla-copyright">
-                <?php echo ( get_theme_mod( 'copyright_text' ) ); ?>
+                <?php echo ( get_theme_mod( 'copyright_text', get_bloginfo( 'title' ) . ' ' . date( 'Y' ) ) ); ?>
             </div>
             <?php 
             if( get_theme_mod( 'layla_social_footer', 'on' ) == 'on' ) :
                 layla_social_icons(); 
             endif;
             ?>
-            
-            <?php $menu = wp_nav_menu( array ( 
-                'theme_location'    => 'footer', 
-                'menu_id'           => 'footer-menu', 
-                'menu_class'        => 'layla-footer-nav' ,
-
-                ) ); ?>
             
             <div class="payment-icons">
 
@@ -687,10 +670,9 @@ function layla_render_footer(){ ?>
             <hr>
 
             <a href="https://smartcatdesign.net" rel="designer" style="display: block !important" class="rel">
-                <?php _e( 'Design by' , 'layla' ); echo ' Smart' . 'cat'; ?>
+                <?php printf( esc_html__( 'Designed by %s', 'layla' ), 'Smartcat' ); ?> 
                 <img src="<?php echo get_template_directory_uri() . '/inc/images/cat_logo_mini.png'?>"/>
             </a>
-            
             
         </div>
         

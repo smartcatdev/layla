@@ -363,7 +363,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				),
 				'notice_can_activate_recommended' => _n_noop(
 					/* translators: 1: plugin name(s). */
-					'The following recommended plugin is currently inactive: %1$s.',
+					'Layla theme recommends you activate this plugin: %1$s.',
 					'The following recommended plugins are currently inactive: %1$s.',
 					'layla'
 				),

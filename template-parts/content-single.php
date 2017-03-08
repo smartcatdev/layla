@@ -42,8 +42,6 @@
 
                         <div class="author"><?php echo get_the_author() ? '<span class="fa fa-user"></span> ' . esc_attr( get_the_author() ) : ' '; ?></div>
 
-                        <div><?php echo get_comments_number() == 0 ? '<span class="fa fa-comment"></span> ' . __('No comments yet', 'layla') : '<span class="fa fa-comment"></span> ' . esc_attr( get_comments_number() ) . ' Comments'; ?></div>
-
 
                     </div>
 

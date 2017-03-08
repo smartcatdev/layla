@@ -1,4 +1,4 @@
-<div id="layla-homepage-widget" data-parallax="scroll" style="background-image: url(<?php echo esc_url( get_theme_mod( 'homepage_widget_background', get_template_directory_uri() . '/inc/images/widget.jpg' ) ); ?>)">
+<div id="layla-homepage-widget" data-parallax="scroll" style="background-image: url(<?php echo esc_url( get_theme_mod( 'homepage_widget_background', get_template_directory_uri() . '/inc/images/people.jpg' ) ); ?>)">
 
     <div>
         <div class="row">

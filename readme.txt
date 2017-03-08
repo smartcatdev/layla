@@ -4,8 +4,8 @@ Contributors: smartcat
 Tags: one-column,two-columns,three-columns,left-sidebar,right-sidebar,grid-layout,custom-colors,featured-image-header,featured-images,full-width-template,theme-options,translation-ready,blog,e-commerce,entertainment,rtl-language-support
 
 Requires at least: 4.4
-Tested up to: 4.7
-Stable tag: 1.2.2
+Tested up to: 4.7.3
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Copyright 2016 Smartcat
 
 == Description ==
 
-Layla is a clean & responsive multi-purpose theme with tons of customizable features. It is well suited for lifestyle bloggers, teams, travel blog, business, photographers, e-commerce stores and creative individuals. You can customize all the colors, fonts, and appearance and preview your changes live. A theme that makes it easy for you to create a beautiful and professional looking site quickly and easily. Layla is fully integrated with WooCommerece, and Our Team Showcase. It allows you to feature posts, pages or products simply by selecting the post you want to feature. This theme also provides RTL language support. This theme has many features that cannot usually be found in a free theme, and can be used by beginners and developers to build a great site quickly and effieciently. See the live demo here: http://layla.smartcatdev.wpengine.com/
+Layla is a clean & responsive multi-purpose theme that is easy to use by users of all levels. Layla allows you to utilize your content into creating a powerful site for your business. This theme can be used to create a website or a landing page for your business, online store or product. Additionally it is very convinient for a start-up company.
 
 == Installation ==
 	
@@ -48,6 +48,13 @@ update screenshot
 
 = 1.2.2 - Jan 03 2017 =
 Minor css tweaks
+
+= 1.2.3 - March 08 2017 =
+Updated main fonts
+Minor CSS changes
+Update screenshot
+Text align adjustment
+Add option to use custom image in the jumbotron
 
 
 == Credits ==
@@ -93,10 +100,23 @@ Minor css tweaks
     - License URL           http://www.gnu.org/licenses/gpl.html
 
 8. Other Images
-    - URL                   https://pixabay.com/en/workstation-office-business-336369/
-                            https://pixabay.com/en/camera-photography-photograph-581126/
-                            https://pixabay.com/en/meal-asian-japanese-culture-lemons-843230/
-                            https://pixabay.com/en/engagement-couple-romance-bike-1718244/
-                            https://pixabay.com/en/sunflower-autumn-flower-bloom-187985/
+    - URL                   https://pixabay.com/en/new-york-cab-cabs-taxi-urban-city-2087998/
+                            https://pixabay.com/en/alley-night-life-party-evening-463479/
+                            https://pixabay.com/en/guess-attic-girl-woman-pretty-hair-837156/
     - License               CC0
-    - License URL           http://creativecommons.org/publicdomain/zero/1.0/deed.en    
+    - License URL           http://creativecommons.org/publicdomain/zero/1.0/deed.en
+
+9. Slicknav
+    - URL                   https://github.com/ComputerWolf/SlickNav
+    - License               MIT
+    - License URL           http://www.opensource.org/licenses/mit-license.php
+
+10. jQuery UI
+    - URL                   https://github.com/jquery/jquery-ui/
+    - License               MIT
+    - License URL           http://opensource.org/licenses/MIT    
+
+10. WOW JS
+    - URL                   https://github.com/matthieua/WOW
+    - License               MIT
+    - License URL           http://opensource.org/licenses/MIT    
