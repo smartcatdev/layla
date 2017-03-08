@@ -6,7 +6,7 @@
  * @package Layla
  */
 get_header();
-die('this is index.php');
+
 ?>
 
 <div id="primary" class="content-area">
