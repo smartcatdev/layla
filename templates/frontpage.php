@@ -36,7 +36,7 @@ get_header();
                     <?php endwhile; ?>
                 
                     <div class="layla-pagination">
-                        <?php echo paginate_links(); ?>
+                        <?php echo the_posts_pagination(); ?>
                     </div>
 
                 <?php else : ?>

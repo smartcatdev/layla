@@ -14,10 +14,6 @@ $front = get_option('show_on_front');
         
         <?php if( $front != 'posts' ) : //frontpage ?>
             <?php do_action('layla_homepage'); ?>
-        <?php else : // blog ?>
-            <?php if( get_theme_mod( 'layla_the_featured_post_toggle', 'on' ) == 'on' ) :  ?>
-                <?php layla_featured_post(); ?>
-            <?php endif; ?>
         <?php endif; ?>
         
         <div class="row">
@@ -51,7 +47,7 @@ $front = get_option('show_on_front');
                     <?php endwhile; ?>
                     <?php echo $front == 'posts' ? '</div>' : ''; ?>
                     <div class="layla-pagination">
-                        <?php echo paginate_links(); ?>
+                        <?php echo the_posts_pagination(); ?>
                     </div>
 
                 <?php else : ?>

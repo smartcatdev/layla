@@ -5,11 +5,12 @@ Tags: one-column,two-columns,three-columns,left-sidebar,right-sidebar,grid-layou
 
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright 2016 Smartcat
+Layla WordPress Theme, Copyright 2017 Smartcat
+Layla is distributed under the terms of the GNU GPL
 
 == Description ==
 
@@ -55,6 +56,9 @@ Minor CSS changes
 Update screenshot
 Text align adjustment
 Add option to use custom image in the jumbotron
+
+= 1.2.4 - March 13 2017 =
+Updates and Fixes based on Theme Review
 
 
 == Credits ==

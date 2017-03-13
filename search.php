@@ -47,7 +47,7 @@ get_header();
         </div>
         <div class="clear"></div>
         <div class="layla-pagination">
-            <?php echo paginate_links(); ?>
+            <?php echo the_posts_pagination(); ?>
         </div>
     </main><!-- #main -->
 </div><!-- #primary -->

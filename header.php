@@ -82,7 +82,7 @@
                                 
                                     <div class="layla-mobile-cart">
 
-                                        <a class="layla-cart" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>"><span class="fa fa-shopping-cart"></span> <?php echo WC()->cart->get_cart_total(); ?></a>
+                                        <a class="layla-cart" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>"><span class="fa fa-shopping-cart"></span> <?php echo esc_attr( WC()->cart->get_cart_total() ); ?></a>
 
                                     </div>
                                 

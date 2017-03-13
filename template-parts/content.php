@@ -41,7 +41,7 @@
     </header><!-- .entry-header -->
 
     <div class="entry-content">
-        <?php echo wp_trim_words( get_the_content(), 50 ); ?>
+        <?php the_excerpt(); ?>
 
         <?php
         wp_link_pages(array(

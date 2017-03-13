@@ -21,7 +21,7 @@ endif; ?>
             
             <?php $words = 15; ?>
             <div class="post-content">
-                <?php echo esc_html( wp_trim_words(strip_shortcodes( wp_strip_all_tags ( get_the_content() ) ), $words ) ); ?>
+                <?php echo esc_html( wp_trim_words(strip_shortcodes( wp_strip_all_tags ( get_the_excerpt() ) ), $words ) ); ?>
             </div>
             
             <?php if ('post' === get_post_type()) : ?>

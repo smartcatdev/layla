@@ -26,7 +26,7 @@ endif;
             <div class="sc_single_side" itemscope itemtype="http://schema.org/Person">
 
                 <div class="inner">
-                    <?php echo the_post_thumbnail('medium'); ?>
+                    <?php echo the_post_thumbnail('large'); ?>
                     <h2 class="name" itemprop="name"><?php echo the_title(); ?></h2>
                     <h3 class="title" itemprop="jobtitle"><?php echo get_post_meta(get_the_ID(), 'team_member_title', true); ?></h3>
                     <ul class="social <?php echo 'yes' == $options['social'] ? '' : 'hidden'; ?>">
@@ -44,7 +44,7 @@ endif;
 
                     <?php if (null !== get_post_meta(get_the_ID(), 'team_member_article_bool', true) && get_post_meta(get_the_ID(), 'team_member_article_bool', true) == 'on') : ?>
                         <div class="sc_team_posts">
-                            <h3 class="skills-title"><?php echo get_post_meta(get_the_ID(), 'team_member_article_title', true) ?></h3>
+                            <h3 class="skills-title"><?php echo esc_attr( get_post_meta(get_the_ID(), 'team_member_article_title', true ) ); ?></h3>
                             
                             <?php
                             
@@ -67,7 +67,7 @@ endif;
                                 endif;
 
                                 $content .= '<div class="col-sm-9">
-                                            <a href="' . esc_url( get_the_permalink($post1->ID) ) . '">' . get_the_title($post1->ID) . '</a>
+                                            <a href="' . esc_url( get_the_permalink($post1->ID) ) . '">' . esc_html( get_the_title($post1->ID) ) . '</a>
                                         </div>
                                     </div><div class="clear"></div>';
                             endif;
@@ -81,7 +81,7 @@ endif;
                                 endif;
 
                                 $content .= '<div class="col-sm-9">
-                                        <a href="' . esc_url( get_the_permalink($post2->ID) ) . '">' . get_the_title($post2->ID) . '</a>
+                                        <a href="' . esc_url( get_the_permalink($post2->ID) ) . '">' . esc_html( get_the_title($post2->ID) ) . '</a>
                                     </div>
                                     </div><div class="clear"></div>';
                             endif;
@@ -95,7 +95,7 @@ endif;
                                 endif;
 
                                 $content .= '<div class="col-sm-9">
-                                            <a href="' . esc_url( get_the_permalink($post3->ID) ) . '">' . get_the_title($post3->ID) . '</a>
+                                            <a href="' . esc_url( get_the_permalink($post3->ID) ) . '">' . esc_html( get_the_title($post3->ID) ) . '</a>
                                         </div>
                                     </div><div class="clear"></div>';
                             endif;
