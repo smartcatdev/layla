@@ -245,7 +245,7 @@ function layla_custom_css() {
         }
         
         #layla-featured-post #slide1{
-            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
+            height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
         }
         
         #masthead.site-header,
@@ -362,7 +362,7 @@ function layla_custom_css() {
         <?php if( get_theme_mod( 'layla_the_featured_post_highlight', false ) ) : ?>
         #layla-featured-post #slide1 span.header-inner {
             padding: 15px;
-            background: rgba( <?php echo $theme_color_rgba[0]; ?>,<?php echo $theme_color_rgba[1]; ?>,<?php echo $theme_color_rgba[2]; ?>, 0.8 ); 
+            background: rgba( <?php echo intval( $theme_color_rgba[0] ); ?>,<?php echo intval( $theme_color_rgba[1] ); ?>,<?php echo intval( $theme_color_rgba[2] ); ?>, 0.8 ); 
         }
         <?php endif; ?>
         
@@ -639,7 +639,7 @@ function layla_render_footer(){ ?>
         <div class="row">
             
             <div class="layla-copyright">
-                <?php echo ( get_theme_mod( 'copyright_text', get_bloginfo( 'title' ) . ' ' . date( 'Y' ) ) ); ?>
+                <?php echo ( get_theme_mod( 'copyright_text', get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
             </div>
             <?php 
             if( get_theme_mod( 'layla_social_footer', 'on' ) == 'on' ) :
