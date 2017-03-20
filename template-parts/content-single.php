@@ -40,7 +40,7 @@
 
                         <div><span class="fa fa-calendar"></span> <?php echo layla_posted_on(); ?></div>
 
-                        <div class="author"><?php echo get_the_author() ? '<span class="fa fa-user"></span> ' . esc_attr( get_the_author() ) : ' '; ?></div>
+                        <div class="author"><?php echo get_the_author() ? '<span class="fa fa-user"></span> ' . esc_html( get_the_author() ) : ' '; ?></div>
 
 
                     </div>

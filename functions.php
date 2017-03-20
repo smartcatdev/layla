@@ -19,7 +19,7 @@ function layla_setup() {
     
     
         if( !defined( 'LAYLA_VERSION' ) ) :
-            define('LAYLA_VERSION', '1.2.4');
+            define('LAYLA_VERSION', '1.2.5');
         endif;
     
         
@@ -90,7 +90,7 @@ add_action( 'after_setup_theme', 'layla_setup' );
  * @global int $content_width
  */
 function layla_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'layla_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'layla_content_width', 1170 );
 }
 add_action( 'after_setup_theme', 'layla_content_width', 0 );
 

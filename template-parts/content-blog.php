@@ -12,7 +12,7 @@
     $image_url = esc_url( $image[0] );
 endif; ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('layla-blog-post reveal fadeIn'); ?> style='<?php echo get_post_thumbnail_id( $post->ID ) ? "background-image: url( $image_url )" : ""; ?>'>
+<article id="post-<?php the_ID(); ?>" <?php post_class('layla-blog-post reveal fadeIn'); ?> style='<?php echo get_post_thumbnail_id( $post->ID ) ? "background-image: url(" . esc_url( $image_url ) . ")" : ""; ?>'>
     
     <div class="post-panel-content">
         

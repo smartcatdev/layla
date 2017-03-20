@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // scroll to top trigger
+    // scroll down trigger
     $('.scroll-down').click(function () {
 
         $("html, body").animate({

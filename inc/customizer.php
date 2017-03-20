@@ -104,7 +104,7 @@ function layla_customize_register( $wp_customize ) {
     ));
     
     $wp_customize->add_setting( 'facebook_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -117,7 +117,7 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'gplus_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -130,7 +130,7 @@ function layla_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'instagram_url', array (
-        'default'               => '#',
+        'default'               => '',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'esc_url_raw'
     ) );
@@ -957,19 +957,6 @@ function layla_font_sizes(){
    }
  }
    
-   function layla_sanitize_sidebar_location($input) {
-    $valid_keys = array(
-      'left'=>__('Left', 'layla'),
-      'right'=>__('Right', 'layla'),
-      'none'=>__('None', 'layla')
-      );
-    if ( array_key_exists( $input, $valid_keys ) ) {
-     return $input;
-   } else {
-     return '';
-   }
- }
-   
    function layla_radio_sanitize_onoff($input) {
     $valid_keys = array(
       'on'=>__('On', 'layla'),
@@ -1050,9 +1037,6 @@ function layla_all_posts_array() {
     return $posts_array;
 
 }
-function layla_sanitize_integer( $input ) {
-    return intval( $input );
-}
 
 function layla_sanitize_icon( $input ) {
     $valid_keys = layla_icons();
@@ -1070,15 +1054,6 @@ function layla_sanitize_post( $input ) {
    } else {
      return '';
    }
-}
-
-function layla_sanitize_theme_color( $input ){
-    $valid_keys = layla_theme_colors();
-    if ( array_key_exists( $input, $valid_keys ) ) {
-     return $input;
-   } else {
-     return '';
-   }    
 }
 
 function layla_sanitize_font( $input ){
@@ -1107,13 +1082,6 @@ function layla_sanitize_checkbox( $input ) {
     }
 }
 
-function layla_theme_colors(){
-    return array(
-            'green'             => __( 'Green', 'layla' ),
-            'blue'              => __( 'Blue', 'layla' ),
-            'red'               => __( 'Red', 'layla' ),
-            'pink'              => __( 'Pink', 'layla' ),
-            'yellow'            => __( 'Yellow', 'layla' ),
-            'darkblue'          => __( 'Dark Blue', 'layla' ),
-        );
+function layla_sanitize_integer( $input ) {
+    return intval( $input );
 }

@@ -5,7 +5,7 @@ Tags: one-column,two-columns,three-columns,left-sidebar,right-sidebar,grid-layou
 
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,15 @@ Add option to use custom image in the jumbotron
 
 = 1.2.4 - March 13 2017 =
 Updates and Fixes based on Theme Review
+
+= 1.2.5 - March 20 2017 =
+Removed redundant echos from post pagination/navigation calls
+Updated some Customizer JS and sanitization functions (removed unused code)
+Added proper escaping in a few places missing them
+Updated a couple enqueues to load minified versions
+Enhanced Featured Post section responsiveness
+Updated Font Awesome font files for up-to-date version
+Updated comments.php to include recommended singular placeholder
 
 
 == Credits ==
