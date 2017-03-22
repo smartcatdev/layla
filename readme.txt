@@ -5,7 +5,7 @@ Tags: one-column,two-columns,three-columns,left-sidebar,right-sidebar,grid-layou
 
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,8 @@ Enhanced Featured Post section responsiveness
 Updated Font Awesome font files for up-to-date version
 Updated comments.php to include recommended singular placeholder
 
+= 1.2.6 - March 22 2017 =
+Removed unnecessary tag
 
 == Credits ==
 

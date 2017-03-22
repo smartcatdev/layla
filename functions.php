@@ -19,7 +19,7 @@ function layla_setup() {
     
     
         if( !defined( 'LAYLA_VERSION' ) ) :
-            define('LAYLA_VERSION', '1.2.5');
+            define('LAYLA_VERSION', '1.2.6');
         endif;
     
         
