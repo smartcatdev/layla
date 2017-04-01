@@ -1,7 +1,8 @@
 === Layla ===
 
 Contributors: smartcat
-Tags: one-column,two-columns,three-columns,left-sidebar,right-sidebar,grid-layout,custom-colors,featured-images,full-width-template,theme-options,translation-ready,blog,e-commerce,entertainment,rtl-language-support
+Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, grid-layout, custom-colors, featured-images, full-width-template, theme-options, translation-ready, blog, e-commerce, portfolio, custom-header, rtl-language-support
+
 
 Requires at least: 4.4
 Tested up to: 4.7.3

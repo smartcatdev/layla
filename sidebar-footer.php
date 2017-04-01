@@ -11,7 +11,7 @@ if ( ! is_active_sidebar( 'sidebar-footer' ) ) {
                 if ( is_active_sidebar( 'sidebar-footer' ) ) {
                     dynamic_sidebar( 'sidebar-footer' );
                 }elseif( current_user_can ( 'edit_theme_options' ) ){ ?>
-                <h2> <?php_e( 'This is the Footer Widget - You can place any widgets here from Appearance - Widgets. You can also hide this or change the image from Customizer - Footer', 'layla' ); ?></h2>
+                <h2> <?php _e( 'This is the Footer Widget - You can place any widgets here from Appearance - Widgets. You can also hide this or change the image from Customizer - Footer', 'layla' ); ?></h2>
                 <?php }else {
                     the_widget('WP_Widget_Recent_Posts');
                 }
