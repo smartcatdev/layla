@@ -17,7 +17,7 @@
                 <div class="col-sm-12">
                     <header class="entry-header">
                         <?php layla_entry_footer(); ?>
-                        <?php the_title('<h1 class="text-left entry-title">', '</h1>'); ?>
+                        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
                     </header><!-- .entry-header -->                
                 </div>
             </div>

@@ -57,7 +57,7 @@ body.admin-bar{
 
 #main.layla-page,
 #main.site-main{
-    margin-top: 50px;
+    margin-top: 15px;
     
 }
 
@@ -1021,7 +1021,38 @@ input[type="submit"],
     
 }
 
-#layla-page-jumbotron .cat-links .fa{
+.entry-meta .entry-title{
+    font-size: 44px;
+    line-height: 48px;
+    margin-top: 10px;
+}
+
+.entry-meta .single-post-thumbnail {
+    margin-top: 15px;
+}
+
+.entry-meta .single-post-thumbnail img {
+    width: 100%;
+}
+
+.entry-meta .post-category a {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 24px;
+    height: 32px;
+    line-height: 32px;
+    background: #f9f9f9;
+    display: inline-block;
+    color: #fff;
+}
+
+.entry-meta .author {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#layla-page-jumbotron .cat-links .fa,
+#layla-page-jumbotron .cat-links{
     color: #fff;    
 }
 

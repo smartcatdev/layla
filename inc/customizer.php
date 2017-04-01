@@ -16,7 +16,10 @@ function layla_customize_register( $wp_customize ) {
     class LaylaCustomizerPanel extends WP_Customize_Control {
 
         public function render_content() { ?>
-
+            
+            <p>
+                <a target="_BLANK" href="http://layla.smartcatdev.wpengine.com/" class="button-primary"><?php _e( 'Live demo', 'layla' ); ?></a>
+            </p>
 
             <p>
                 <?php _e( 'Layla allows you to easily create a frontpage, blog page, e-commerce shop page, and it also includes templates allowing you to customize where the sidebars are located', 'layla' ); ?>
@@ -40,7 +43,11 @@ function layla_customize_register( $wp_customize ) {
     // ****************** General ******************
     // *********************************************
     
-    
+    $wp_customize->add_section('header_image', array(
+        'title'     => __( 'Jumbotron', 'layla' ),
+        'priority'  => 0.5,
+        'panel'     => 'homepage'
+    ));
     
     $wp_customize->add_section('layla_demo', array(
         'title'     => __( 'Theme Demo & Instructions', 'layla'),
@@ -348,9 +355,10 @@ function layla_customize_register( $wp_customize ) {
             ) );
 
            $wp_customize->add_control( 'layla_the_featured_post_toggle', array(
-                'label'         => __( 'Display the featured post ?', 'layla' ),
-                'section' => 'homepage_jumbotron',
+                'label'         => __( 'Display the Jumbotron ?', 'layla' ),
+                'section' => 'header_image',
                 'type'    => 'radio',
+                'priority' => 0,
                 'choices'    => array(
                     'on'    => __( 'Yes', 'layla' ),
                     'off'    => __( 'No', 'layla' )
@@ -364,9 +372,10 @@ function layla_customize_register( $wp_customize ) {
             ) );
             $wp_customize->add_control( 'layla_the_featured_post', array(
                 'type'                  => 'select',
-                'section'               => 'homepage_jumbotron',
+                'section'               => 'header_image',
+                'priority' => 0,
                 'label'                 => __( 'Select the Featured Post', 'layla' ),
-                'description'           => __( 'Select a post, page or one of your WooCommerce products to be featured on the homepage and blog', 'layla' ),
+                'description'           => __( 'Select a post, page or one of your WooCommerce products to be featured on the Frontpage. To edit the text that shows up, go to the post and edit it directly.', 'layla' ),
                 'choices'               => layla_all_posts_array(),
             ) );
     
@@ -377,7 +386,8 @@ function layla_customize_register( $wp_customize ) {
             ) );
             $wp_customize->add_control( 'layla_jumbotron_height', array(
                 'type'                  => 'number',
-                'section'               => 'homepage_jumbotron',
+                'section'               => 'header_image',
+                'priority' => 0,
                 'label'                 => __( 'Height of Featured Post section', 'layla' ),
                 'input_attrs'           => array(
                     'min' => 300,
@@ -392,8 +402,9 @@ function layla_customize_register( $wp_customize ) {
             ) );
             $wp_customize->add_control( 'layla_the_featured_post_button', array(
                 'type'                  => 'text',
-                'section'               => 'homepage_jumbotron',
+                'section'               => 'header_image',
                 'label'                 => __( 'Button Text', 'layla' ),
+                'priority' => 0,
             ) );
             
             $wp_customize->add_setting( 'layla_the_featured_post_highlight', array (
@@ -403,40 +414,10 @@ function layla_customize_register( $wp_customize ) {
             ) );
             $wp_customize->add_control( 'layla_the_featured_post_highlight', array(
                 'type'                  => 'checkbox',
-                'section'               => 'homepage_jumbotron',
+                'section'               => 'header_image',
+                'priority' => 0,
                 'label'                 => __( 'Add background color to post title ?', 'layla' ),
             ) );
-            
-            $wp_customize->add_setting( 'layla_the_featured_post_image_toggle', array (
-                'default'               => 'off',
-                'transport'             => 'refresh',
-                'sanitize_callback'     => 'layla_radio_sanitize_onoff'
-            ) );
-
-           $wp_customize->add_control( 'layla_the_featured_post_image_toggle', array(
-                'label'         => __( 'Use custom image ?', 'layla' ),
-                'description'   => __( 'If set to NO, the Jumbotron will use the Featured Image of your page/post that you selected above. YES will allow you to upload any image below', 'layla' ),
-                'section' => 'homepage_jumbotron',
-                'type'    => 'radio',
-                'choices'    => array(
-                    'on'    => __( 'Yes', 'layla' ),
-                    'off'    => __( 'No', 'layla' )
-                )
-            ));
-
-            $wp_customize->add_setting( 'layla_the_featured_post_image', array (
-                'default'               => get_template_directory_uri() . '/inc/images/layla.jpg',
-                'transport'             => 'refresh',
-                'sanitize_callback'     => 'esc_url_raw'
-            ) );
-
-            $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'layla_the_featured_post_image', array (
-                'label' =>              __( 'Custom Background Image', 'layla' ),
-                'section'               => 'homepage_jumbotron',
-                'mime_type'             => 'image',
-                'settings'              => 'layla_the_featured_post_image',
-                'description'           => __( 'If you want to use a custom image, upload an image here. Make sure that the Use Custom Image toggle is set to YES', 'layla' ),        
-            ) ) );
             
 
     $wp_customize->add_section( 'homepage_topa', array (

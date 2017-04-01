@@ -320,7 +320,8 @@ function layla_custom_css() {
         .entry-meta .fa,
         .layla-blog-post,
         #layla-featured,
-        .woocommerce span.onsale{
+        .woocommerce span.onsale,
+        .entry-meta .post-category a{
             background: <?php echo $theme_color; ?>;
         }
         
@@ -386,16 +387,13 @@ function layla_featured_post() { ?>
         ?>
         
         <div id="layla-slider" class="hero">
+            
             <?php $post_id = get_theme_mod( 'layla_the_featured_post', 1 ); ?>
             
             <?php if( $post_id ) : ?>
-
-                <?php if( get_theme_mod( 'layla_the_featured_post_image_toggle', 'on' ) == 'on' ) : ?>
-                    <div id="slide1" style="background-image: url( '<?php echo esc_url( get_theme_mod( 'layla_the_featured_post_image', get_template_directory_uri() . '/inc/images/layla.jpg' ) ); ?>');">
-                <?php else : ?>
-                    <div id="slide1" style="<?php echo has_post_thumbnail( $post_id) ? 'background-image: url(' . esc_url( layla_get_post_thumb( $post_id ) ) . ');' : ''; ?>">
-                <?php endif; ?>
-
+                
+            <div id="slide1" style="background-image: url( '<?php header_image(); ?>');">
+                
                 <div class="overlay"></div>
                 <div class="row">
                     <div class="col-sm-12 slide-details">
@@ -410,7 +408,7 @@ function layla_featured_post() { ?>
                                     </h2>
 
                                     <p class="animated fadeIn delay1">
-                                        <?php echo esc_html( wp_trim_words( strip_tags( get_the_content( $post_id ) ), 25 ) ); ?>
+                                        <?php echo esc_html( wp_trim_words( strip_tags( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
                                     </p>
                                 </a>
 
