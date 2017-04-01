@@ -8,8 +8,6 @@
  */
 ?>
 
-
-
 <div class="row">
     
     <?php get_sidebar('left'); ?>
@@ -56,6 +54,8 @@
                 ?>
             </div><!-- .entry-content -->
 
+            <?php layla_post_tags(); ?>
+            
             <?php the_post_navigation(); ?>
 
             <?php

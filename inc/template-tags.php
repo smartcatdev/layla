@@ -51,6 +51,8 @@ function layla_entry_footer() {
 		if ( $categories_list && layla_categorized_blog() ) {
 			printf( '<span class="cat-links">' . esc_html__( 'Posted in: %1$s', 'layla' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 		}
+		
+
 
 	}
 
@@ -126,4 +128,22 @@ function layla_post_category() {
             echo '<a href="' . esc_url( get_category_link( $cat->cat_ID ) ) . '">' . esc_html( $cat->name ) . '</a>';
         }
     }
+}
+
+function layla_post_tags() {
+    /* translators: used between list items, there is a space after the comma */
+    $tags_list = get_the_tag_list( '', esc_html__( ', ', 'layla' ) );
+    if ( $tags_list ) {
+            printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'layla' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+    }
+    
+    edit_post_link(
+            sprintf(
+                    /* translators: %s: Name of current post */
+                    esc_html__( 'Edit %s', 'layla' ),
+                    the_title( '<span class="screen-reader-text">"', '"</span>', false )
+            ),
+            '<span class="edit-link">',
+            '</span>'
+    );
 }
