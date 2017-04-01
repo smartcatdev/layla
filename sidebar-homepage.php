@@ -6,7 +6,9 @@
             <?php
                 if ( is_active_sidebar( 'sidebar-homepage' ) ) {
                     dynamic_sidebar( 'sidebar-homepage' );
-                }else{
+                }elseif( current_user_can ( 'edit_theme_options' ) ){ ?>
+                    <h2> <?php _e( 'This is the Top B Homepage Widget - You can place any widgets here from Appearance - Widgets. You can also hide or change the image from Customizer - Frontpage - Top B', 'layla' );?> </h2>
+                <?php }else {
                     the_widget('WP_Widget_Recent_Posts');
                 }
             ?>

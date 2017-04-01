@@ -28,7 +28,7 @@ endif;
                 <div class="inner">
                     <?php echo the_post_thumbnail('large'); ?>
                     <h2 class="name" itemprop="name"><?php echo the_title(); ?></h2>
-                    <h3 class="title" itemprop="jobtitle"><?php echo get_post_meta(get_the_ID(), 'team_member_title', true); ?></h3>
+                    <h3 class="title" itemprop="jobtitle"><?php echo esc_html( get_post_meta( get_the_ID(), 'team_member_title', true ) ); ?></h3>
                     <ul class="social <?php echo 'yes' == $options['social'] ? '' : 'hidden'; ?>">
 
                         <?php $team->set_social(get_the_ID()); ?>

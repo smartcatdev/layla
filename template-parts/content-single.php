@@ -8,25 +8,6 @@
  */
 ?>
 
-<?php if (get_post_thumbnail_id($post->ID)) : ?>
-    <div id="layla-page-jumbotron" class="parallax-window table-display" data-parallax="scroll" style="background-image: url(<?php echo esc_url( wp_get_attachment_url(get_post_thumbnail_id($post->ID)) ); ?>)" >
-        <div class="overlay"></div>
-        
-        <div class="cell-display">
-            <div class="row">
-                <div class="col-sm-12">
-                    <header class="entry-header">
-                        <?php layla_entry_footer(); ?>
-                        <?php the_title('<h1 class="text-left entry-title">', '</h1>'); ?>
-                    </header><!-- .entry-header -->                
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-<?php endif; ?>
-
 <div class="row">
     
     <?php get_sidebar('left'); ?>
@@ -37,11 +18,25 @@
             <header class="entry-header">
                 <div class="entry-meta">
                     <div class="meta-detail">
+                        
+                        <div class="post-category">
+                            <?php layla_post_category(); ?>
+                        </div>
+                        
+                        <?php the_title('<h1 class="text-left entry-title">', '</h1>'); ?>
+                        
+                        <!--<div><span class="fa fa-calendar"></span> </div>-->
 
-                        <div><span class="fa fa-calendar"></span> <?php echo layla_posted_on(); ?></div>
-
-                        <div class="author"><?php echo get_the_author() ? '<span class="fa fa-user"></span> ' . esc_attr( get_the_author() ) : ' '; ?></div>
-
+                        <div class="author"><?php echo get_the_author() ? esc_html( get_the_author() ) . ' . ' : ''; ?><?php echo layla_posted_on(); ?></div>
+                        
+                        <div class="single-post-thumbnail">
+                        <?php 
+                        if( has_post_thumbnail() ) :
+                            the_post_thumbnail( 'large' );
+                        endif;
+                        
+                        ?>                            
+                        </div>
 
                     </div>
 
@@ -59,6 +54,8 @@
                 ?>
             </div><!-- .entry-content -->
 
+            <?php layla_post_tags(); ?>
+            
             <?php the_post_navigation(); ?>
 
             <?php

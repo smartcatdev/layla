@@ -19,7 +19,7 @@ function layla_setup() {
     
     
         if( !defined( 'LAYLA_VERSION' ) ) :
-            define('LAYLA_VERSION', '1.2.4');
+            define('LAYLA_VERSION', '1.2.8');
         endif;
     
         
@@ -77,6 +77,30 @@ function layla_setup() {
 	) );
 
         add_theme_support( 'custom-logo' );
+        
+        add_theme_support( 'custom-header', array( 
+            'default-image'          => get_template_directory_uri() . '/inc/images/layla.jpg',
+            'width'                  => 1200,
+            'height'                 => 800,
+            'flex-height'            => true,
+            'flex-width'             => true,
+            'uploads'                => true,
+            'random-default'         => false,
+            'header-text'            => false,
+            'default-text-color'     => '',
+            'wp-head-callback'       => '',
+            'admin-head-callback'    => '',
+            'admin-preview-callback' => '',
+            'video'                  => false
+        ) );
+        
+        register_default_headers( array(
+            'layla' => array(
+                'url'   => get_template_directory_uri() . '/inc/images/layla.jpg',
+                'thumbnail_url'   => get_template_directory_uri() . '/inc/images/layla.jpg',
+                'description'   => __('Layla', 'layla' )
+            )
+        ) );
 
 }
 endif; // layla_setup
@@ -90,7 +114,7 @@ add_action( 'after_setup_theme', 'layla_setup' );
  * @global int $content_width
  */
 function layla_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'layla_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'layla_content_width', 1170 );
 }
 add_action( 'after_setup_theme', 'layla_content_width', 0 );
 

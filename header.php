@@ -57,16 +57,16 @@
 
                                 <div class="site-branding">
                                     
-                                    <div id="layla-logo" class="<?php echo has_custom_logo() ? 'show' : 'hidden'; ?>">
+                                    <div id="layla-logo" class="<?php echo function_exists( 'has_custom_logo' ) && has_custom_logo() ? 'show' : 'hidden'; ?>">
 
                                         <?php the_custom_logo(); ?>
 
                                     </div>
-                                        <h1 class="site-title <?php echo ! has_custom_logo() ? 'show' : 'hidden'; ?>">
+                                        <h1 class="site-title <?php echo ! function_exists( 'has_custom_logo' ) || ! has_custom_logo() ? 'show' : 'hidden'; ?>">
                                             <a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a>
                                         </h1>
 
-                                        <p class="site-description <?php echo ! has_custom_logo() ? 'show' : 'hidden'; ?>">
+                                        <p class="site-description <?php echo ! function_exists( 'has_custom_logo' ) || ! has_custom_logo() ? 'show' : 'hidden'; ?>">
                                             <?php bloginfo('description'); ?>
                                         </p>
                                         

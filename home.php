@@ -44,7 +44,7 @@ get_header();
                     </div>
                 
                     <div class="layla-pagination">
-                        <?php echo the_posts_pagination(); ?>
+                        <?php the_posts_pagination(); ?>
                     </div>
 
                 <?php else : ?>

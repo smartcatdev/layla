@@ -18,9 +18,9 @@ function layla_scripts() {
 
     wp_enqueue_style('layla-style', get_stylesheet_uri());
 
-    wp_enqueue_script('navigation', get_template_directory_uri() . '/js/navigation.js', array(), LAYLA_VERSION, true);
+    wp_enqueue_script('layla-navigation', get_template_directory_uri() . '/js/navigation.js', array(), LAYLA_VERSION, true);
 
-    wp_enqueue_script('skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), LAYLA_VERSION, true);
+    wp_enqueue_script('layla-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), LAYLA_VERSION, true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -37,17 +37,18 @@ function layla_scripts() {
     endif;
     
 
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri() . '/inc/css/bootstrap-theme.min.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/inc/css/font-awesome.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('font-awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css', array(), LAYLA_VERSION);
     wp_enqueue_style('layla-main-style', get_template_directory_uri() . '/inc/css/style.css', array(), LAYLA_VERSION);
-    wp_enqueue_style('animate-css', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
+    wp_enqueue_style('animate', get_template_directory_uri() . '/inc/css/animate.css', array(), LAYLA_VERSION);
     wp_enqueue_style('slicknav', get_template_directory_uri() . '/inc/css/slicknav.min.css', array(), LAYLA_VERSION);
+    
     wp_enqueue_script('jquery-easing', get_template_directory_uri() . '/inc/js/easing.js', array('jquery'), LAYLA_VERSION, true);
-    wp_enqueue_script('slicknav', get_template_directory_uri() . '/inc/js/slicknav.min.js', array('jquery'), LAYLA_VERSION, true);
-    wp_enqueue_script('wow', get_template_directory_uri() . '/inc/js/wow.js', array('jquery'), LAYLA_VERSION, true);
-
+    wp_enqueue_script('jquery-slicknav', get_template_directory_uri() . '/inc/js/slicknav.min.js', array('jquery'), LAYLA_VERSION, true);
+    wp_enqueue_script('jquery-wow', get_template_directory_uri() . '/inc/js/wow.min.js', array('jquery'), LAYLA_VERSION, true);
     wp_enqueue_script('layla-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core', 'jquery-masonry'), LAYLA_VERSION);
+    
 }
 
 add_action('wp_enqueue_scripts', 'layla_scripts');
@@ -244,8 +245,9 @@ function layla_custom_css() {
             font-size: <?php echo esc_attr( get_theme_mod('menu_font_size', '14px' ) ); ?>;
         }
         
-        #layla-featured-post #slide1{
-            height: <?php echo esc_attr( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
+        #layla-featured-post #slide1,
+        #layla-featured-post #slide1 .slide-vert-wrapper{
+            height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
         }
         
         #masthead.site-header,
@@ -318,7 +320,8 @@ function layla_custom_css() {
         .entry-meta .fa,
         .layla-blog-post,
         #layla-featured,
-        .woocommerce span.onsale{
+        .woocommerce span.onsale,
+        .entry-meta .post-category a{
             background: <?php echo $theme_color; ?>;
         }
         
@@ -351,8 +354,7 @@ function layla_custom_css() {
             color: #fff;
         }
 
-        .scroll-top:hover,
-        #layla-overlay-trigger:hover{
+        .scroll-top:hover {
             background: <?php echo $hover_color; ?>;
         }
         
@@ -362,21 +364,9 @@ function layla_custom_css() {
         <?php if( get_theme_mod( 'layla_the_featured_post_highlight', false ) ) : ?>
         #layla-featured-post #slide1 span.header-inner {
             padding: 15px;
-            background: rgba( <?php echo $theme_color_rgba[0]; ?>,<?php echo $theme_color_rgba[1]; ?>,<?php echo $theme_color_rgba[2]; ?>, 0.8 ); 
+            background: rgba( <?php echo intval( $theme_color_rgba[0] ); ?>,<?php echo intval( $theme_color_rgba[1] ); ?>,<?php echo intval( $theme_color_rgba[2] ); ?>, 0.8 ); 
         }
         <?php endif; ?>
-        
-        
-
-        
-        #pre-header{
-            background-color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_bg_color', '#ffffff' ) ); ?>;
-            color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_text_color', '#101010' ) ); ?>;
-        }
-        
-        #pre-header a{
-            color: <?php echo esc_attr( get_theme_mod( 'layla_headerbar_text_color', '#101010' ) ); ?>;
-        }
         
     </style>
     <?php
@@ -391,41 +381,45 @@ function layla_featured_post() { ?>
     <div id="layla-featured-post">
         
         <?php
-        if( get_theme_mod( 'layla_social_featured', 'off' ) == 'on' ) :
+        if( get_theme_mod( 'layla_social_featured', 'on' ) == 'on' ) :
             layla_social_icons(); 
         endif;
         ?>
         
         <div id="layla-slider" class="hero">
+            
             <?php $post_id = get_theme_mod( 'layla_the_featured_post', 1 ); ?>
             
             <?php if( $post_id ) : ?>
-
-                <?php if( get_theme_mod( 'layla_the_featured_post_image_toggle', 'on' ) == 'on' ) : ?>
-                    <div id="slide1" style="background-image: url( '<?php echo get_theme_mod( 'layla_the_featured_post_image', get_template_directory_uri() . '/inc/images/layla.jpg' ) ?>');">
-                <?php else : ?>
-                    <div id="slide1" style="<?php echo has_post_thumbnail( $post_id) ? 'background-image: url(' . esc_url(layla_get_post_thumb( $post_id ) ) . ')' : ''; ?>">
-                <?php endif; ?>
-
+                
+            <div id="slide1" style="background-image: url( '<?php header_image(); ?>');">
+                
                 <div class="overlay"></div>
                 <div class="row">
                     <div class="col-sm-12 slide-details">
 
-                        <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>">
-                            <h2 class="header-text slide1-header animated fadeIn delay1">
-                                <span class="header-inner"><?php echo ( get_the_title( $post_id ) ? esc_attr( get_the_title( $post_id ) ) : '' ); ?></span>
-                            </h2>
+                        <div class="slide-vert-wrapper">
+                         
+                            <div class="slide-vert-inner">
                             
-                            <p class="animated fadeIn delay1">
-                                <?php echo esc_html( wp_trim_words( wp_strip_all_tags ( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
-                            </p>
-                        </a>
+                                <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>">
+                                    <h2 class="header-text slide1-header animated fadeIn delay1">
+                                        <span class="header-inner"><?php echo ( get_the_title( $post_id ) ? esc_attr( get_the_title( $post_id ) ) : '' ); ?></span>
+                                    </h2>
 
-                        <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>" 
-                           class="animated fadeIn delay1 layla-button primary">
-                            <?php echo esc_attr( get_theme_mod( 'layla_the_featured_post_button', __( 'Continue reading', 'layla' )  ) ); ?>
-                        </a>
+                                    <p class="animated fadeIn delay1">
+                                        <?php echo esc_html( wp_trim_words( strip_tags( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
+                                    </p>
+                                </a>
 
+                                <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>" 
+                                   class="animated fadeIn delay1 layla-button primary">
+                                    <?php echo esc_attr( get_theme_mod( 'layla_the_featured_post_button', __( 'Continue reading', 'layla' )  ) ); ?>
+                                </a>
+
+                            </div>
+                            
+                        </div>
 
                     </div>
 
@@ -466,7 +460,7 @@ function layla_render_homepage() {
         <div class="row text-center">
             <div class="col-sm-12">
                 
-                <h3 class="heading"><?php echo esc_attr( $the_post->post_title ); ?></h3>
+                <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
                 
                 <p class="description">
                     <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
@@ -505,7 +499,7 @@ function layla_render_homepage() {
                     <div class="row text-center">
                         <div class="col-sm-12">
 
-                            <h3 class="heading"><?php echo esc_attr( $the_post->post_title ); ?></h3>
+                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
 
                             <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
 
@@ -514,7 +508,7 @@ function layla_render_homepage() {
                             </p>
                             
                             <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ); ?></a>
+                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
                             </div>
                             
                         </div>            
@@ -532,7 +526,7 @@ function layla_render_homepage() {
                     <div class="row text-center">
                         <div class="col-sm-12">
 
-                            <h3 class="heading"><?php echo esc_attr( $the_post->post_title ); ?></h3>
+                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
 
                             <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
 
@@ -541,7 +535,7 @@ function layla_render_homepage() {
                             </p>
                             
                             <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ); ?></a>
+                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
                             </div>
 
                         </div>            
@@ -559,7 +553,7 @@ function layla_render_homepage() {
                     <div class="row text-center">
                         <div class="col-sm-12">
 
-                            <h3 class="heading"><?php echo esc_attr( $the_post->post_title ); ?></h3>
+                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
 
                             <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
 
@@ -568,7 +562,7 @@ function layla_render_homepage() {
                             </p>
                             
                             <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ); ?></a>
+                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
                             </div>
 
                         </div>            
@@ -620,7 +614,7 @@ function layla_render_footer(){ ?>
     
     <?php if( get_theme_mod( 'footer_background_toggle', 'on' ) == 'on') : ?>
     
-    <div class="layla-footer" class="parallax-window" data-parallax="scroll" style="background-image: url(<?php echo esc_attr( get_theme_mod('footer_background_image', get_template_directory_uri() . '/inc/images/cab.jpg' ) ); ?>)">
+    <div class="layla-footer" class="parallax-window" data-parallax="scroll" style="background-image: url(<?php echo esc_url( get_theme_mod('footer_background_image', get_template_directory_uri() . '/inc/images/cab.jpg' ) ); ?>)">
         <div>
             <div class="row">
                 <?php get_sidebar('footer'); ?>
@@ -639,7 +633,7 @@ function layla_render_footer(){ ?>
         <div class="row">
             
             <div class="layla-copyright">
-                <?php echo ( get_theme_mod( 'copyright_text', get_bloginfo( 'title' ) . ' ' . date( 'Y' ) ) ); ?>
+                <?php echo esc_html( get_theme_mod( 'copyright_text', get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
             </div>
             <?php 
             if( get_theme_mod( 'layla_social_footer', 'on' ) == 'on' ) :
@@ -709,71 +703,71 @@ function layla_social_icons() { ?>
 
     <div id="layla-social">
 
-        <?php if( get_theme_mod( 'facebook_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'facebook_url' ) ); ?>" target="_BLANK" class="layla-facebook">
+        <?php if( get_theme_mod( 'facebook_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'facebook_url', '' ) ); ?>" target="_BLANK" class="layla-facebook">
             <span class="fa fa-facebook"></span>
         </a>
         <?php endif; ?>
 
 
-        <?php if( get_theme_mod( 'gplus_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'gplus_url' ) ); ?>" target="_BLANK" class="layla-gplus">
+        <?php if( get_theme_mod( 'gplus_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'gplus_url', '' ) ); ?>" target="_BLANK" class="layla-gplus">
             <span class="fa fa-google-plus"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'instagram_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'instagram_url' ) ); ?>" target="_BLANK" class="layla-instagram">
+        <?php if( get_theme_mod( 'instagram_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'instagram_url', '' ) ); ?>" target="_BLANK" class="layla-instagram">
             <span class="fa fa-instagram"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'linkedin_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'linkedin_url' ) ); ?>" target="_BLANK" class="layla-linkedin">
+        <?php if( get_theme_mod( 'linkedin_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'linkedin_url', '' ) ); ?>" target="_BLANK" class="layla-linkedin">
             <span class="fa fa-linkedin"></span>
         </a>
         <?php endif; ?>
 
 
-        <?php if( get_theme_mod( 'pinterest_url' ) != '' ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'pinterest_url' ) ); ?>" target="_BLANK" class="layla-pinterest">
+        <?php if( get_theme_mod( 'pinterest_url', '' ) != '' ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'pinterest_url', '' ) ); ?>" target="_BLANK" class="layla-pinterest">
             <span class="fa fa-pinterest"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'twitter_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'twitter_url' ) ); ?>" target="_BLANK" class="layla-twitter">
+        <?php if( get_theme_mod( 'twitter_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'twitter_url', '' ) ); ?>" target="_BLANK" class="layla-twitter">
             <span class="fa fa-twitter"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'vimeo_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'vimeo_url' ) ); ?>" target="_BLANK" class="layla-vimeo">
+        <?php if( get_theme_mod( 'vimeo_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'vimeo_url', '' ) ); ?>" target="_BLANK" class="layla-vimeo">
             <span class="fa fa-vimeo"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'spotify_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'spotify_url' ) ); ?>" target="_BLANK" class="layla-spotify">
+        <?php if( get_theme_mod( 'spotify_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'spotify_url', '' ) ); ?>" target="_BLANK" class="layla-spotify">
             <span class="fa fa-spotify"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'apple_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'apple_url' ) ); ?>" target="_BLANK" class="layla-apple">
+        <?php if( get_theme_mod( 'apple_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'apple_url', '' ) ); ?>" target="_BLANK" class="layla-apple">
             <span class="fa fa-apple"></span>
         </a>
         <?php endif; ?>
 
-        <?php if( get_theme_mod( 'github_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'github_url' ) ); ?>" target="_BLANK" class="layla-github">
+        <?php if( get_theme_mod( 'github_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'github_url', '' ) ); ?>" target="_BLANK" class="layla-github">
             <span class="fa fa-github"></span>
         </a>
         <?php endif; ?>
 
 
-        <?php if( get_theme_mod( 'vine_url' ) ) : ?>
-        <a href="<?php echo esc_url( get_theme_mod( 'vine_url' ) ); ?>" target="_BLANK" class="layla-vine">
+        <?php if( get_theme_mod( 'vine_url', '' ) ) : ?>
+        <a href="<?php echo esc_url( get_theme_mod( 'vine_url', '' ) ); ?>" target="_BLANK" class="layla-vine">
             <span class="fa fa-vine"></span>
         </a>
         <?php endif; ?>

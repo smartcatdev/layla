@@ -57,7 +57,7 @@ body.admin-bar{
 
 #main.layla-page,
 #main.site-main{
-    margin-top: 50px;
+    margin-top: 15px;
     
 }
 
@@ -502,9 +502,16 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 
 #layla-featured-post #slide1 .slide-details{
     text-align: center;
-    position: absolute;
-    bottom: 30%;
+}
+
+#layla-featured-post #slide1 .slide-vert-wrapper {
     width: 100%;
+    display: table;
+}
+ 
+#layla-featured-post #slide1 .slide-vert-inner {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #layla-featured-post #slide1 p{
@@ -515,8 +522,9 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 } 
 
 @media( max-width: 480px ) {
-    #layla-featured-post #slide1 {
-        height: 300px !important;
+    #layla-featured-post #slide1,
+    #layla-featured-post #slide1 .slide-vert-wrapper {
+        height: 350px !important;
     }
     
     #layla-featured-post #slide1 p {
@@ -1013,7 +1021,38 @@ input[type="submit"],
     
 }
 
-#layla-page-jumbotron .cat-links .fa{
+.entry-meta .entry-title{
+    font-size: 44px;
+    line-height: 48px;
+    margin-top: 10px;
+}
+
+.entry-meta .single-post-thumbnail {
+    margin-top: 15px;
+}
+
+.entry-meta .single-post-thumbnail img {
+    width: 100%;
+}
+
+.entry-meta .post-category a {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 24px;
+    height: 32px;
+    line-height: 32px;
+    background: #f9f9f9;
+    display: inline-block;
+    color: #fff;
+}
+
+.entry-meta .author {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#layla-page-jumbotron .cat-links .fa,
+#layla-page-jumbotron .cat-links{
     color: #fff;    
 }
 
@@ -1136,6 +1175,20 @@ input[type="submit"],
 .post-navigation .nav-previous{
     display: none;
 }
+
+.layla-pagination nav.posts-navigation {
+    overflow: initial;
+}
+
+.layla-pagination nav.posts-navigation .nav-next,
+.layla-pagination nav.posts-navigation .nav-previous {
+    padding: 20px 0;
+}
+ 
+.layla-pagination nav.posts-navigation .nav-previous {
+    text-align: left;
+}
+
 /* ------- calendar widget --------------*/
 .widget_calendar {float: left;}
 #wp-calendar {width: 100%; }
