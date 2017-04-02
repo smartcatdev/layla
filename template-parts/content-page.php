@@ -74,7 +74,7 @@
         </article><!-- #post-## -->
     </div>
 
-    <?php get_sidebar(); ?>
+    <?php get_sidebar('right'); ?>
 
 </div>
 

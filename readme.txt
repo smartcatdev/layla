@@ -5,7 +5,7 @@ Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, grid-
 
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2.8
+Stable tag: 1.3.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,12 @@ Jumbotron now uses Custom Header
 
 = 1.2.8 - March 22 2017 =
 Fix bug with content on Jumbotron
+
+= 1.2.9 - April 2 2017 =
+Removed frontpage overlay widget as it's not being used
+
+= 1.3.0 - April 2 2017 =
+Fix issue with right sidebar
 
 == Credits ==
 

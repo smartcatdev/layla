@@ -131,7 +131,7 @@ function layla_do_left_sidebar( $args ) {
     if( get_theme_mod( 'sidebar_location', 'right' ) == 'left' ) :
         
         echo '<div class="col-sm-4" id="layla-sidebar">' .
-        get_sidebar() . '</div>';
+        get_sidebar('right') . '</div>';
         
     endif;
     
@@ -160,7 +160,7 @@ function layla_do_right_sidebar( $args ) {
         
         echo '<div class="col-sm-4" id="layla-sidebar">';
     
-        get_sidebar();
+        get_sidebar('right');
         
         echo '</div>';
         

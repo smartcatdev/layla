@@ -58,7 +58,7 @@ $front = get_option('show_on_front');
 
             </div>
 
-            <?php //get_sidebar(); ?>
+            <?php //get_sidebar('right'); ?>
 
         </div>
     </main><!-- #main -->
