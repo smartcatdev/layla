@@ -101,7 +101,8 @@ function layla_setup() {
                 'description'   => __('Layla', 'layla' )
             )
         ) );
-
+        
+        add_filter('widget_text','do_shortcode');
 }
 endif; // layla_setup
 add_action( 'after_setup_theme', 'layla_setup' );
