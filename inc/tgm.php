@@ -63,7 +63,12 @@ function layla_register_required_plugins() {
                 'name' => __( 'Our Team Showcase', 'layla' ),
                 'slug' => 'our-team-enhanced',
                 'required' => false,
-            )
+            ),
+            array (
+                'name' => __( 'uCare - Support Ticket System', 'layla' ),
+                'slug' => 'ucare-support-system',
+                'required' => false,
+            ),
         );
 
 	/*
