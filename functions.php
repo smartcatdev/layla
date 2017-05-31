@@ -19,7 +19,7 @@ function layla_setup() {
     
     
         if( !defined( 'LAYLA_VERSION' ) ) :
-            define('LAYLA_VERSION', '1.2.8');
+            define('LAYLA_VERSION', '1.2.9');
         endif;
     
         
@@ -42,6 +42,9 @@ function layla_setup() {
 	 */
 	add_theme_support( 'title-tag' );
         add_theme_support('woocommerce');
+        add_theme_support( 'wc-product-gallery-zoom' );
+        add_theme_support( 'wc-product-gallery-lightbox' );
+        add_theme_support( 'wc-product-gallery-slider' );
         
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.

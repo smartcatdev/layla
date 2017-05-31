@@ -4,8 +4,8 @@ Contributors: smartcat
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, grid-layout, custom-colors, featured-images, full-width-template, theme-options, translation-ready, blog, e-commerce, portfolio, custom-header, rtl-language-support
 
 Requires at least: 4.4
-Tested up to: 4.7.3
-Stable tag: 1.2.8
+Tested up to: 4.7.5
+Stable tag: 1.2.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,9 @@ Jumbotron now uses Custom Header
 
 = 1.2.8 - March 22 2017 =
 Fix bug with content on Jumbotron
+
+= 1.2.9 - May 30 2017 =
+Reinstate WooCommerce Gallery features by specifically adding declarations
 
 == Credits ==
 
