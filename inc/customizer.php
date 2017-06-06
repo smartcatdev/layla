@@ -963,32 +963,30 @@ function layla_checkbox_sanitize($input) {
 function layla_fonts() {
 
     $font_family_array = array(
-        'Bad Script, cursive' => 'Bad+Script',
-        'Lobster Two, cursive' => 'Lobster+Two',
-        'Josefin Sans, sans-serif' => 'Josefin',
-        'Open Sans, sans-serif' => 'Open Sans',
-        'Palatino Linotype, Book Antiqua, Palatino, serif' => 'Palatino Linotype',
-        'Source Sans Pro, sans-serif' => 'Source Sans Pro',
+        
         'Abel, sans-serif' => 'Abel',
+        'Bad Script, cursive' => 'Bad+Script',
         'Bangers, cursive' => 'Bangers',
-        'Lobster Two, cursive' => 'Lobster+Two',
+        'Corben, cursive' => 'Corben',
         'Josefin Sans, sans-serif' => 'Josefin+Sans:300,400,600,700',
-        'Montserrat, sans-serif' => 'Montserrat:400,700',
-        'Poiret One, cursive' => 'Poiret+One',
-        'Source Sans Pro, sans-serif' => 'Source+Sans+Pro:200,400,600',
         'Lato, sans-serif' => 'Lato:100,300,400,700,900,300italic,400italic',
+        'Lobster Two, cursive' => 'Lobster+Two',
+        'Lora, serif' => 'Lora',
+        'Montserrat, sans-serif' => 'Montserrat:400,700',
+        'Open Sans, sans-serif' => 'Open Sans',
+        'Old Standard TT, serif' => 'Old+Standard+TT',
+        'Orbitron, sans-serif' => 'Orbitron',
+        'Oswald, sans-serif' => 'Oswald',
+        'Palatino Linotype, Book Antiqua, Palatino, serif' => 'Palatino Linotype',
+        'PT Sans Narrow, sans-serif' => 'PT+Sans+Narrow',
+        'Playfair Display, serif' => 'Playfair+Display:400,700',
+        'Poiret One, cursive' => 'Poiret+One',
         'Raleway, sans-serif' => 'Raleway:400,300,500,700',
         'Russo One, sans-serif' => 'Russo+One',
         'Shadows Into Light, cursive' => 'Shadows+Into+Light',
-        'Orbitron, sans-serif' => 'Orbitron',
-        'Old Standard TT, serif' => 'Old+Standard+TT',
-        'Oswald, sans-serif' => 'Oswald',
-        'PT Sans Narrow, sans-serif' => 'PT+Sans+Narrow',
-        'Playfair Display, serif' => 'Playfair+Display:400,700',
-        'Lora, serif' => 'Lora',
-        'Abel, sans-serif' => 'Abel',
+        'Source Sans Pro, sans-serif' => 'Source+Sans+Pro:200,400,600',
         'Yellowtail, cursive' => 'Yellowtail',
-        'Corben, cursive' => 'Corben'
+
     );
 
     return $font_family_array;
