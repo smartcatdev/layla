@@ -371,9 +371,7 @@ function layla_custom_css() {
     </style>
     <?php
 }
-
 add_action('wp_head', 'layla_custom_css');
-
 
 
 function layla_featured_post() { ?>
@@ -435,8 +433,8 @@ function layla_featured_post() { ?>
             <?php endif; ?>
             
         </div>
+        
     </div>
-
 
     <div class="clear"></div>
     
@@ -446,39 +444,13 @@ function layla_render_homepage() {
     
     if( get_theme_mod( 'layla_the_featured_post_toggle', 'on' ) == 'on' ) :
     
-        layla_featured_post();
-    
+        do_action( 'layla_jumbotron' );
+        
     endif;
     
     ?>
     
-    <?php $post_id = get_theme_mod( 'layla_the_featured_post2', 1 ); ?>
-    <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
-    <?php if( $the_post && get_theme_mod('layla_the_featured_post2_toggle', 'on' ) == 'on' ) : ?>
-    <div id="layla-topa">
-        
-        <div class="row text-center">
-            <div class="col-sm-12">
-                
-                <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
-                
-                <p class="description">
-                    <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
-                </p>
-                
-            </div>            
-        </div>
-        
-        <div class="row text-center">
-            <div class="col-sm-12">
-                <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
-            </div>
-        </div>        
-
-    </div>
-    
-    <div class="clear"></div>
-    <?php endif; ?>
+    <?php do_action( 'layla_top_a'); ?>
     
     <?php if( get_theme_mod('homepage_widget_bool', 'on' ) == 'on' ) : ?>
         <div id="layla-topb">
@@ -486,114 +458,18 @@ function layla_render_homepage() {
         </div>
     <?php endif; ?>
     
-    <?php if( get_theme_mod('homepage_topc_toggle', 'on' ) == 'on' ) : ?>
-    
-    <div id="layla-topc">
-        <div class="row">
-            <div class="col-sm-4">
-                
-                <?php $post_id = get_theme_mod( 'layla_the_featured_post3', 1 ); ?>
-                <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
-                <?php if( $the_post ) : ?>
-                
-                    <div class="row text-center">
-                        <div class="col-sm-12">
-
-                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
-
-                            <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
-
-                            <p class="description">
-                                <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
-                            </p>
-                            
-                            <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
-                            </div>
-                            
-                        </div>            
-                    </div>
-
-                <?php endif; ?>
-                
-            </div>
-            <div class="col-sm-4">
-                
-                <?php $post_id = get_theme_mod( 'layla_the_featured_post4', 1 ); ?>
-                <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
-                <?php if( $the_post ) : ?>
-                
-                    <div class="row text-center">
-                        <div class="col-sm-12">
-
-                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
-
-                            <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
-
-                            <p class="description">
-                                <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
-                            </p>
-                            
-                            <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
-                            </div>
-
-                        </div>            
-                    </div>
-
-                <?php endif; ?>
-                
-            </div>
-            <div class="col-sm-4">
-                
-                <?php $post_id = get_theme_mod( 'layla_the_featured_post5', 1 ); ?>
-                <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
-                <?php if( $the_post ) : ?>
-                
-                    <div class="row text-center">
-                        <div class="col-sm-12">
-
-                            <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
-
-                            <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
-
-                            <p class="description">
-                                <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
-                            </p>
-                            
-                            <div class="center">
-                                <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
-                            </div>
-
-                        </div>            
-                    </div>
-
-                
-                <?php endif; ?>
-                
-                
-                
-            </div>
-            <div class="clear"></div>
-            <hr>
-            
-            
-        </div>
-        
-    </div>
-    
-    <?php endif; ?>
+    <?php do_action('layla_top_c'); ?>
     
     <div class="clear"></div>
     
-    
-    
-
-    
     <?php
 }
-
 add_action( 'layla_homepage', 'layla_render_homepage' );
+
+function layla_add_jumbotron(){
+    layla_featured_post();
+}
+add_action( 'layla_jumbotron', 'layla_add_jumbotron' );
 
 
 function layla_get_post_thumb( $post_id ) {
@@ -620,8 +496,6 @@ function layla_render_footer(){ ?>
                 <?php get_sidebar('footer'); ?>
             </div>            
         </div>
-
-        
     </div>
     
     <div class="clear"></div>
@@ -663,10 +537,7 @@ function layla_render_footer(){ ?>
             
             <hr>
 
-            <a href="https://smartcatdesign.net" rel="designer" style="display: block !important" class="rel">
-                <?php printf( esc_html__( 'Designed by %s', 'layla' ), 'Smartcat' ); ?> 
-                <img src="<?php echo get_template_directory_uri() . '/inc/images/cat_logo_mini.png'?>"/>
-            </a>
+            <?php do_action( 'layla_designer' ); ?>
             
         </div>
         
@@ -775,3 +646,158 @@ function layla_social_icons() { ?>
     </div>
     
 <?php }
+
+
+add_action( 'layla_designer', 'layla_add_designer' );
+function layla_add_designer() { ?>
+    
+    <a href="https://smartcatdesign.net" rel="designer" style="display: block !important" class="rel">
+        <?php printf( esc_html__( 'Designed by %s', 'layla' ), 'Smartcat' ); ?> 
+        <img src="<?php echo get_template_directory_uri() . '/inc/images/cat_logo_mini.png'?>"/>
+    </a>
+
+    <?php 
+    
+}
+
+add_action( 'layla_top_a', 'layla_add_top_a' );
+function layla_add_top_a() { ?>
+    
+    <?php $post_id = get_theme_mod( 'layla_the_featured_post2', 1 ); ?>
+    <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
+    
+    <?php if( $the_post && get_theme_mod('layla_the_featured_post2_toggle', 'on' ) == 'on' ) : ?>
+        
+        <div id="layla-topa">
+
+            <div class="row text-center">
+                <div class="col-sm-12">
+
+                    <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
+
+                    <p class="description">
+                        <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
+                    </p>
+
+                </div>            
+            </div>
+
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
+                </div>
+            </div>        
+
+        </div>
+
+        <div class="clear"></div>
+    
+    <?php endif;
+    
+}
+
+add_action( 'layla_top_c', 'layla_add_top_c' );
+function layla_add_top_c() { ?>
+    
+    <?php if( get_theme_mod('homepage_topc_toggle', 'on' ) == 'on' ) : ?>
+    
+        <div id="layla-topc">
+            
+            <div class="row">
+                
+                <div class="col-sm-4">
+
+                    <?php $post_id = get_theme_mod( 'layla_the_featured_post3', 1 ); ?>
+                    <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
+                    <?php if( $the_post ) : ?>
+
+                        <div class="row text-center">
+                            <div class="col-sm-12">
+
+                                <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
+
+                                <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
+
+                                <p class="description">
+                                    <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
+                                </p>
+
+                                <div class="center">
+                                    <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
+                                </div>
+
+                            </div>            
+                        </div>
+
+                    <?php endif; ?>
+
+                </div>
+                
+                <div class="col-sm-4">
+
+                    <?php $post_id = get_theme_mod( 'layla_the_featured_post4', 1 ); ?>
+                    <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
+                    <?php if( $the_post ) : ?>
+
+                        <div class="row text-center">
+                            <div class="col-sm-12">
+
+                                <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
+
+                                <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
+
+                                <p class="description">
+                                    <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
+                                </p>
+
+                                <div class="center">
+                                    <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
+                                </div>
+
+                            </div>            
+                        </div>
+
+                    <?php endif; ?>
+
+                </div>
+                
+                <div class="col-sm-4">
+
+                    <?php $post_id = get_theme_mod( 'layla_the_featured_post5', 1 ); ?>
+                    <?php $the_post = $post_id ? get_post( $post_id ) : null; ?>
+                    <?php if( $the_post ) : ?>
+
+                        <div class="row text-center">
+                            <div class="col-sm-12">
+
+                                <h3 class="heading"><?php echo esc_html( $the_post->post_title ); ?></h3>
+
+                                <a href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo get_the_post_thumbnail( $post_id ); ?></a>
+
+                                <p class="description">
+                                    <?php echo esc_html( wp_trim_words( $the_post->post_content, 40 ) ); ?>
+                                </p>
+
+                                <div class="center">
+                                    <a class="animated fadeInUp delay3 layla-button primary" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"><?php echo esc_html( get_theme_mod( 'homepage_topc_button', __( 'Learn more', 'layla' ) ) ); ?></a>
+                                </div>
+
+                            </div>            
+                        </div>
+
+                    <?php endif; ?>
+
+                </div>
+                
+                <div class="clear"></div>
+                
+                <hr>
+
+            </div>
+
+        </div>
+    
+    <?php endif;
+    
+}
+
