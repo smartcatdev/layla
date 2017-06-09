@@ -30,22 +30,43 @@ $front = get_option('show_on_front');
                         </header>
                     <?php endif; ?>
 
-                    
-
                     <?php echo $front == 'posts' ? '<div class="layla-blog-content">' : ''; ?>
 
-                    <?php while (have_posts()) : the_post(); ?>
+                        <?php if ( $front == 'posts' && get_theme_mod( 'layla_blog_style', 'default' ) == 'masonry' && defined( 'LAYLA_PRO_PATH' ) ) : ?>
+                
+                            <div id="masonry-wrapper">
 
-                        <?php
-                        if ('posts' == $front ) :
-                            get_template_part('template-parts/content-blog', get_post_format());
-                        else:
-                            get_template_part('template-parts/content-page-home', get_post_format());
-                        endif;
-                        ?>
+                                <div class="grid-sizer"></div>
+                                <div class="gutter-sizer"></div>
 
-                    <?php endwhile; ?>
+                                <?php while ( have_posts() ) : the_post();
+
+                                    include LAYLA_PRO_PATH . '/template-parts/alternate-blog.php';
+
+                                endwhile; ?>
+                        
+                            </div>
+                            
+                        <?php elseif ( $front == 'posts' ) :
+                                
+                            while ( have_posts() ) : the_post();
+
+                                get_template_part('template-parts/content-blog', get_post_format());
+
+                            endwhile; ?>
+                
+                        <?php else :
+                                
+                            while ( have_posts() ) : the_post();
+
+                                get_template_part( 'template-parts/content-page-home', get_post_format() );
+
+                            endwhile; ?>
+                
+                        <?php endif; ?>
+                
                     <?php echo $front == 'posts' ? '</div>' : ''; ?>
+                
                     <div class="layla-pagination">
                         <?php the_posts_pagination(); ?>
                     </div>

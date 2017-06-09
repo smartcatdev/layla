@@ -75,7 +75,7 @@ function layla_customize_register( $wp_customize ) {
 
     $wp_customize->add_section( 'social_links', array (
         'title'                 => __( 'Social Icons & Links', 'layla' ),
-        'priority'              => 10,
+        'priority'              => 12,
     ) );
     
     $wp_customize->add_setting( 'layla_social_featured', array (
@@ -581,7 +581,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'appearance', array (
         'title'                 => __( 'Appearance', 'layla' ),
         'description'           => __( 'Customize your site colros, fonts and other appearance settings', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
     
 
@@ -723,7 +723,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'footer', array (
         'title'                 => __( 'Footer', 'layla' ),
         'description'           => __( 'Customize the site footer', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
     
         $wp_customize->add_section( 'footer_background', array (
@@ -840,7 +840,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'social', array (
         'title'                 => __( 'Social', 'layla' ),
         'description'           => __( 'Social Icons, Links & Location', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
    
     
