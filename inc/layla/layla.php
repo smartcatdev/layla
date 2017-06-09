@@ -245,8 +245,8 @@ function layla_custom_css() {
             font-size: <?php echo esc_attr( get_theme_mod('menu_font_size', '14px' ) ); ?>;
         }
         
-        #layla-featured-post #slide1,
-        #layla-featured-post #slide1 .slide-vert-wrapper{
+        #layla-featured-post .single-slide,
+        #layla-featured-post .single-slide .slide-vert-wrapper{
             height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
         }
         
@@ -362,7 +362,7 @@ function layla_custom_css() {
             border-bottom: 7px solid <?php echo $theme_color; ?>;
         }
         <?php if( get_theme_mod( 'layla_the_featured_post_highlight', false ) ) : ?>
-        #layla-featured-post #slide1 span.header-inner {
+        #layla-featured-post .single-slide span.header-inner {
             padding: 15px;
             background: rgba( <?php echo intval( $theme_color_rgba[0] ); ?>,<?php echo intval( $theme_color_rgba[1] ); ?>,<?php echo intval( $theme_color_rgba[2] ); ?>, 0.8 ); 
         }
@@ -390,7 +390,7 @@ function layla_featured_post() { ?>
             
             <?php if( $post_id ) : ?>
                 
-            <div id="slide1" style="background-image: url( '<?php header_image(); ?>');">
+            <div id="slide1" style="background-image: url( '<?php header_image(); ?>');" class="single-slide">
                 
                 <div class="overlay"></div>
                 <div class="row">
