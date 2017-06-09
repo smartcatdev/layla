@@ -245,8 +245,8 @@ function layla_custom_css() {
             font-size: <?php echo esc_attr( get_theme_mod('menu_font_size', '14px' ) ); ?>;
         }
         
-        #layla-featured-post .single-slide,
-        #layla-featured-post .single-slide .slide-vert-wrapper{
+        #layla-featured-post #layla-slider .single-slide,
+        #layla-featured-post #layla-slider .single-slide .slide-vert-wrapper{
             height: <?php echo intval( get_theme_mod('layla_jumbotron_height', 650 ) ); ?>px;
         }
         
