@@ -669,7 +669,7 @@ function layla_customize_register( $wp_customize ) {
         'section'               => 'font',
         'label'                 => __( 'Headers Font', 'layla' ),
         'description'           => __( 'Applies to the slider header, callouts headers, post page & widget titles etc..', 'layla' ),
-        'choices'               => layla_fonts()
+        'choices'               => function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts(),
         
     ) );
     
@@ -683,7 +683,7 @@ function layla_customize_register( $wp_customize ) {
         'type'                  => 'select',
         'section'               => 'font',
         'label'                 => __( 'General font for the site body', 'layla' ),
-        'choices'               => layla_fonts()
+        'choices'               => function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts(),
         
     ) );
     
@@ -1036,7 +1036,7 @@ function layla_sanitize_post( $input ) {
 }
 
 function layla_sanitize_font( $input ){
-    $valid_keys = layla_fonts();
+    $valid_keys = function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts();
     if ( array_key_exists( $input, $valid_keys ) ) {
      return $input;
    } else {

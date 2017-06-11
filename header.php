@@ -21,12 +21,6 @@
 
     <body <?php body_class(); ?>>
         
-        <div class="overlay-widget">
-            <div class="row">
-                <?php get_sidebar( 'overlay' ); ?>
-            </div>
-        </div>
-        
         <div id="layla-search" class="noshow">
             
             <div class="row">

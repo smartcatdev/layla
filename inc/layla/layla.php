@@ -26,7 +26,7 @@ function layla_scripts() {
         wp_enqueue_script('comment-reply');
     }
     
-    $fonts = layla_fonts();
+    $fonts = function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts();
     
     if( array_key_exists ( get_theme_mod('header_font', 'Oswald, sans-serif'), $fonts ) ) :
         wp_enqueue_style('layla-font-header', '//fonts.googleapis.com/css?family=' . $fonts[get_theme_mod('header_font', 'Oswald, sans-serif')], array(), LAYLA_VERSION );
@@ -97,17 +97,7 @@ function layla_widgets_init() {
     ));
 
     register_sidebar(array(
-        'name' => esc_html__('Frontpage Overlay', 'layla'),
-        'id' => 'sidebar-overlay',
-        'description' => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s col-sm-12">',
-        'after_widget' => '</aside>',
-        'before_title' => '<h2 class="widget-title">',
-        'after_title' => '</h2>',
-    ));
-
-    register_sidebar(array(
-        'name' => esc_html__('Top B - Homepage widget', 'layla'),
+        'name' => esc_html__('Top B - Homepage Widget', 'layla'),
         'id' => 'sidebar-homepage',
         'description' => '',
         'before_widget' => '<aside id="%1$s" class="widget %2$s col-sm-12">',
