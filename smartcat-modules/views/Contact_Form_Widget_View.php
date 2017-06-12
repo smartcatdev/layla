@@ -2,9 +2,9 @@
 
     <div class="widget">
 
-        <h6 class="feature-title">
+        <h2 class="feature-title cpt-widget-title">
             <?php echo !empty( $instance['scmod_contact_form_title'] ) ? esc_html( $instance['scmod_contact_form_title'] ) : ''; ?>
-        </h6>
+        </h2>
 
         <div class="detail">
             <?php echo !empty( $instance['scmod_contact_form_detail'] ) ? esc_html( $instance['scmod_contact_form_detail'] ) : ''; ?>
@@ -29,7 +29,7 @@
                 <textarea name="message" class="control message"></textarea>
             </div>
 
-            <input type="submit" class="accent-button" value="<?php echo !empty( $instance['scmod_contact_form_submit_label'] ) ? esc_attr( $instance['scmod_contact_form_submit_label'] ) : ''; ?>"/>
+            <input type="submit" class="layla-button primary" value="<?php echo !empty( $instance['scmod_contact_form_submit_label'] ) ? esc_attr( $instance['scmod_contact_form_submit_label'] ) : ''; ?>"/>
 
             <div class="mail-sent"><span class="fa fa-check-circle"></span> <?php _e( 'Email sent!', 'layla' ); ?></div>
             <div class="mail-not-sent"><span class="fa fa-exclamation-circle"></span> <?php _e( 'There has been an error, please check the information you entered and try again.', 'layla' ); ?></div>
