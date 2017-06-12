@@ -82,8 +82,11 @@ $front = get_option('show_on_front');
             <?php //get_sidebar(); ?>
 
         </div>
+        
     </main><!-- #main -->
+    
+    <?php do_action( 'layla_feature_section' ); ?>
+    
 </div><!-- #primary -->
-
 
 <?php get_footer(); ?>        

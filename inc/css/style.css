@@ -517,9 +517,14 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 #layla-featured-post .single-slide p{
     font-size: 22px;
     color: #fff;
-    margin: 25px auto 32px auto;
+    margin: 25px auto 0 auto;
     width: 70%;
 } 
+
+#layla-featured-post #layla-slider a.layla-button, 
+#layla-featured-post .camera_wrap .single-slide a.layla-button {
+    margin-top: 32px;
+}
 
 @media( max-width: 480px ) {
     #layla-featured-post #layla-slider .single-slide,

@@ -395,9 +395,14 @@ function layla_featured_post() { ?>
                                         <span class="header-inner"><?php echo ( get_the_title( $post_id ) ? esc_attr( get_the_title( $post_id ) ) : '' ); ?></span>
                                     </h2>
 
-                                    <p class="animated fadeIn delay1">
-                                        <?php echo esc_html( wp_trim_words( strip_tags( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
-                                    </p>
+                                    <?php if ( get_theme_mod( 'layla_featured_post_content_toggle', 'show' ) == 'show' ) : ?>
+                                    
+                                        <p class="animated fadeIn delay1">
+                                            <?php echo esc_html( wp_trim_words( strip_tags( get_post_field( 'post_content', $post_id ) ), 25 ) ); ?>
+                                        </p>
+                                    
+                                    <?php endif; ?>
+                                    
                                 </a>
 
                                 <a href="<?php echo get_the_permalink( $post_id ) ? esc_url( get_the_permalink( $post_id ) ) : null; ?>" 
@@ -461,7 +466,6 @@ function layla_add_jumbotron(){
 }
 add_action( 'layla_jumbotron', 'layla_add_jumbotron' );
 
-
 function layla_get_post_thumb( $post_id ) {
     
     if( $post_id == 'nopost' ) :
@@ -474,7 +478,6 @@ function layla_get_post_thumb( $post_id ) {
     endif;
     
 }
-
 
 function layla_render_footer(){ ?>
     

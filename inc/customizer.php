@@ -423,6 +423,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_topa', array (
         'title'                 => __( 'Top A - Featured Page/Post/Product', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
             $wp_customize->add_setting( 'layla_the_featured_post2_toggle', array (
@@ -458,6 +459,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_widget', array (
         'title'                 => __( 'Top B - Homepage Widget', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
 
@@ -496,6 +498,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_topc', array (
         'title'                 => __( 'Top C - 3-column Page/Post/Product', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
     
@@ -565,8 +568,9 @@ function layla_customize_register( $wp_customize ) {
 
 
     $wp_customize->add_section( 'static_front_page', array (
-        'title' => __( 'Static Front Page', 'layla' ),
-        'panel' => 'homepage',
+        'title'     => __( 'Static Front Page', 'layla' ),
+        'panel'     => 'homepage',
+        'priority'  => 20
     ) );
     
     $wp_customize->add_section( 'title_tagline', array (
