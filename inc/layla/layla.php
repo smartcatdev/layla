@@ -227,7 +227,14 @@ function layla_custom_css() {
             font-family: <?php echo esc_attr( get_theme_mod( 'theme_font', 'Lato, sans-serif' ) ); ?>;
 
         }
-        h1,h2,h3,h4,h5,h6,.slide2-header,.slide1-header,.layla-title, .widget-title,.entry-title, .product_title{
+        h1,h2,h3,h4,h5,h6,
+        .slide2-header,
+        .slide1-header,
+        .layla-title, 
+        .widget-title,
+        .entry-title, 
+        .product_title,
+        .contact-row .detail{
             font-family: <?php echo esc_attr( get_theme_mod('header_font', 'Oswald, sans-serif' ) ); ?>;
         }
         
