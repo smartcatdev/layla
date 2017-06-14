@@ -43,7 +43,7 @@ body.admin-bar{
 
 .row{
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .hidden{
@@ -482,7 +482,7 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
     position: relative;
 }
 
-#layla-featured-post #slide1{
+#layla-featured-post .single-slide {
     background-size: cover;
     height: 400px;
     position: relative;
@@ -493,59 +493,64 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
     
 }
 
-#layla-featured-post #slide1 .row{
+#layla-featured-post .single-slide .row{
     text-align: center;
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-#layla-featured-post #slide1 .slide-details{
+#layla-featured-post .single-slide .slide-details{
     text-align: center;
 }
 
-#layla-featured-post #slide1 .slide-vert-wrapper {
+#layla-featured-post .single-slide .slide-vert-wrapper {
     width: 100%;
     display: table;
 }
  
-#layla-featured-post #slide1 .slide-vert-inner {
+#layla-featured-post .single-slide .slide-vert-inner {
     display: table-cell;
     vertical-align: middle;
 }
 
-#layla-featured-post #slide1 p{
+#layla-featured-post .single-slide p{
     font-size: 22px;
     color: #fff;
-    margin: 25px auto 32px auto;
+    margin: 25px auto 0 auto;
     width: 70%;
 } 
 
+#layla-featured-post #layla-slider a.layla-button, 
+#layla-featured-post .camera_wrap .single-slide a.layla-button {
+    margin-top: 32px;
+}
+
 @media( max-width: 480px ) {
-    #layla-featured-post #slide1,
-    #layla-featured-post #slide1 .slide-vert-wrapper {
+    #layla-featured-post #layla-slider .single-slide,
+    #layla-featured-post #layla-slider .single-slide .slide-vert-wrapper {
         height: 350px !important;
     }
     
-    #layla-featured-post #slide1 p {
+    #layla-featured-post .single-slide p {
         display: none;
     }
     
-    #layla-featured-post #slide1 h2 {
+    #layla-featured-post .single-slide h2 {
         font-size: 28px !important;
         line-height: 32px !important;
         margin-bottom: 15px !important;
     }
 }
 
-#layla-featured-post #slide1 span.header-inner{
+#layla-featured-post .single-slide span.header-inner{
     
 }
 
 
 
 
-#layla-featured-post #slide1 .overlay{
+#layla-featured-post .single-slide .overlay{
     background: rgba( 0,0,0,0.4);
     position: absolute;
     top: 0;
@@ -554,7 +559,7 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
     height: 100%;
 }
 
-#layla-featured-post #slide1 h2{
+#layla-featured-post .single-slide h2{
     font-size: 44px;
     line-height: 46px;
     color: #fff;
@@ -726,18 +731,6 @@ ul.layla-nav > li.menu-item.menu-item-has-children > a:after{
 .frontpage-blog{
     margin: 30px 0;
 }
-
-
-.overlay-widget{
-    color: #414141;
-    display: none;
-    position: fixed;
-    background: rgba(255,255,255,0.96);
-    width: 100%;
-    height: 100%;
-    z-index: 9;
-}
-
 
 /*-- ## Top A --*/
 #layla-topa{
@@ -1350,6 +1343,11 @@ li.product a.ajax_add_to_cart{
 
 .woocommerce .products .star-rating{
     margin-left: 15px;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    margin-left: 15px;
+    padding-right: 15px;
 }
 
 .payment-icons{

@@ -75,7 +75,7 @@ function layla_customize_register( $wp_customize ) {
 
     $wp_customize->add_section( 'social_links', array (
         'title'                 => __( 'Social Icons & Links', 'layla' ),
-        'priority'              => 10,
+        'priority'              => 12,
     ) );
     
     $wp_customize->add_setting( 'layla_social_featured', array (
@@ -423,6 +423,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_topa', array (
         'title'                 => __( 'Top A - Featured Page/Post/Product', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
             $wp_customize->add_setting( 'layla_the_featured_post2_toggle', array (
@@ -458,6 +459,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_widget', array (
         'title'                 => __( 'Top B - Homepage Widget', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
 
@@ -496,6 +498,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'homepage_topc', array (
         'title'                 => __( 'Top C - 3-column Page/Post/Product', 'layla' ),
         'panel'                 => 'homepage',
+        'priority'              => 10
     ) );
     
     
@@ -565,8 +568,9 @@ function layla_customize_register( $wp_customize ) {
 
 
     $wp_customize->add_section( 'static_front_page', array (
-        'title' => __( 'Static Front Page', 'layla' ),
-        'panel' => 'homepage',
+        'title'     => __( 'Static Front Page', 'layla' ),
+        'panel'     => 'homepage',
+        'priority'  => 20
     ) );
     
     $wp_customize->add_section( 'title_tagline', array (
@@ -581,7 +585,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'appearance', array (
         'title'                 => __( 'Appearance', 'layla' ),
         'description'           => __( 'Customize your site colros, fonts and other appearance settings', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
     
 
@@ -669,7 +673,7 @@ function layla_customize_register( $wp_customize ) {
         'section'               => 'font',
         'label'                 => __( 'Headers Font', 'layla' ),
         'description'           => __( 'Applies to the slider header, callouts headers, post page & widget titles etc..', 'layla' ),
-        'choices'               => layla_fonts()
+        'choices'               => function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts(),
         
     ) );
     
@@ -683,7 +687,7 @@ function layla_customize_register( $wp_customize ) {
         'type'                  => 'select',
         'section'               => 'font',
         'label'                 => __( 'General font for the site body', 'layla' ),
-        'choices'               => layla_fonts()
+        'choices'               => function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts(),
         
     ) );
     
@@ -723,7 +727,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'footer', array (
         'title'                 => __( 'Footer', 'layla' ),
         'description'           => __( 'Customize the site footer', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
     
         $wp_customize->add_section( 'footer_background', array (
@@ -840,7 +844,7 @@ function layla_customize_register( $wp_customize ) {
     $wp_customize->add_panel( 'social', array (
         'title'                 => __( 'Social', 'layla' ),
         'description'           => __( 'Social Icons, Links & Location', 'layla' ),
-        'priority'              => 10
+        'priority'              => 12
     ) );
    
     
@@ -963,32 +967,30 @@ function layla_checkbox_sanitize($input) {
 function layla_fonts() {
 
     $font_family_array = array(
-        'Bad Script, cursive' => 'Bad+Script',
-        'Lobster Two, cursive' => 'Lobster+Two',
-        'Josefin Sans, sans-serif' => 'Josefin',
-        'Open Sans, sans-serif' => 'Open Sans',
-        'Palatino Linotype, Book Antiqua, Palatino, serif' => 'Palatino Linotype',
-        'Source Sans Pro, sans-serif' => 'Source Sans Pro',
+        
         'Abel, sans-serif' => 'Abel',
+        'Bad Script, cursive' => 'Bad+Script',
         'Bangers, cursive' => 'Bangers',
-        'Lobster Two, cursive' => 'Lobster+Two',
+        'Corben, cursive' => 'Corben',
         'Josefin Sans, sans-serif' => 'Josefin+Sans:300,400,600,700',
-        'Montserrat, sans-serif' => 'Montserrat:400,700',
-        'Poiret One, cursive' => 'Poiret+One',
-        'Source Sans Pro, sans-serif' => 'Source+Sans+Pro:200,400,600',
         'Lato, sans-serif' => 'Lato:100,300,400,700,900,300italic,400italic',
+        'Lobster Two, cursive' => 'Lobster+Two',
+        'Lora, serif' => 'Lora',
+        'Montserrat, sans-serif' => 'Montserrat:400,700',
+        'Open Sans, sans-serif' => 'Open Sans',
+        'Old Standard TT, serif' => 'Old+Standard+TT',
+        'Orbitron, sans-serif' => 'Orbitron',
+        'Oswald, sans-serif' => 'Oswald',
+        'Palatino Linotype, Book Antiqua, Palatino, serif' => 'Palatino Linotype',
+        'PT Sans Narrow, sans-serif' => 'PT+Sans+Narrow',
+        'Playfair Display, serif' => 'Playfair+Display:400,700',
+        'Poiret One, cursive' => 'Poiret+One',
         'Raleway, sans-serif' => 'Raleway:400,300,500,700',
         'Russo One, sans-serif' => 'Russo+One',
         'Shadows Into Light, cursive' => 'Shadows+Into+Light',
-        'Orbitron, sans-serif' => 'Orbitron',
-        'Old Standard TT, serif' => 'Old+Standard+TT',
-        'Oswald, sans-serif' => 'Oswald',
-        'PT Sans Narrow, sans-serif' => 'PT+Sans+Narrow',
-        'Playfair Display, serif' => 'Playfair+Display:400,700',
-        'Lora, serif' => 'Lora',
-        'Abel, sans-serif' => 'Abel',
+        'Source Sans Pro, sans-serif' => 'Source+Sans+Pro:200,400,600',
         'Yellowtail, cursive' => 'Yellowtail',
-        'Corben, cursive' => 'Corben'
+
     );
 
     return $font_family_array;
@@ -1038,7 +1040,7 @@ function layla_sanitize_post( $input ) {
 }
 
 function layla_sanitize_font( $input ){
-    $valid_keys = layla_fonts();
+    $valid_keys = function_exists( 'layla_more_fonts' ) ? layla_more_fonts() : layla_fonts();
     if ( array_key_exists( $input, $valid_keys ) ) {
      return $input;
    } else {

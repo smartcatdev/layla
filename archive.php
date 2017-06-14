@@ -32,14 +32,32 @@ get_header();
                         </header>
                     <?php endif; ?>
 
-                    
                     <div class="layla-blog-content">
+                        
+                        <?php if ( get_theme_mod( 'layla_blog_style', 'default' ) == 'masonry' && defined( 'LAYLA_PRO_PATH' ) ) : ?>
+                
+                            <div id="masonry-wrapper">
 
-                    <?php while (have_posts()) : the_post(); ?>
+                                <div class="grid-sizer"></div>
+                                <div class="gutter-sizer"></div>
 
-                        <?php get_template_part('template-parts/content-blog', get_post_format()); ?>
+                                <?php while (have_posts()) : the_post(); ?>
 
-                    <?php endwhile; ?>
+                                    <?php include LAYLA_PRO_PATH . '/template-parts/alternate-blog.php';; ?>
+
+                                <?php endwhile; ?>
+                        
+                            </div>
+                            
+                        <?php else : ?>
+                                
+                            <?php while (have_posts()) : the_post(); ?>
+
+                                <?php get_template_part('template-parts/content-blog', get_post_format()); ?>
+
+                            <?php endwhile; ?>
+                                
+                        <?php endif; ?>
                         
                     </div>
                 

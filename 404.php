@@ -16,11 +16,16 @@ get_header();
             <div class="col-sm-12">
                 <section class="error-404 not-found">
                     <header class="page-header">
-                        <h1 class="page-title"><?php esc_html_e('Oops! That page can&rsquo;t be found.', 'layla'); ?></h1>
+                        <h1 class="page-title">
+                            <?php echo esc_html( get_theme_mod( 'layla_error_page_heading', __( 'Oops! That page can&rsquo;t be found.', 'layla' ) ) ); ?>
+                        </h1>
                     </header><!-- .page-header -->
 
                     <div class="page-content">
-                        <p><?php esc_html_e('It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'layla'); ?></p>
+                        
+                        <p>
+                            <?php echo esc_html( get_theme_mod( 'layla_error_page_subheading', __( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'layla' ) ) ); ?>
+                        </p>
 
                         <?php get_search_form(); ?>
 
