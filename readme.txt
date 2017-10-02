@@ -5,7 +5,7 @@ Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, grid-
 
 Requires at least: 4.4
 Tested up to: 4.7.5
-Stable tag: 1.2.9
+Stable tag: 1.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,8 +78,9 @@ Jumbotron now uses Custom Header
 = 1.2.8 - March 22 2017 =
 Fix bug with content on Jumbotron
 
-= 1.2.9 - May 30 2017 =
+= 1.3.1 - May 30 2017 =
 Reinstate WooCommerce Gallery features by specifically adding declarations
+Prep theme for Layla Pro plugin enhancements
 
 == Credits ==
 
